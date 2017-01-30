@@ -54,3 +54,4 @@ ECHO [Bastion]: Press any key to exit.
 PAUSE >nul 2>&1
 CD /D "%cwd%"
 TITLE Windows Command Prompt (CMD)
+COLOR
