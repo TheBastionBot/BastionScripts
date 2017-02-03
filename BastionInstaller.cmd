@@ -42,7 +42,8 @@ ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Finalizing...
 CD settings && COPY config_example.json config.json && COPY credentials_example.json credentials.json
-CHOICE /m "Do you want to setup credentials now?"
+ECHO.
+CHOICE /m "Do you want to setup your credentials now?"
 IF %ERRORLEVEL%==2 GOTO :CREDENTIALS
 SET /P botId=Please enter your BOT ID:
 SET /P token=Please enter BOT Token:
@@ -55,6 +56,22 @@ ECHO   "ownerId": [>>credentials.json
 ECHO     "%ownerID%">>credentials.json
 ECHO   ]>>credentials.json
 ECHO }>>credentials.json
+ECHO [Bastion]: Done. \o/
+ECHO.
+SET prefix=?bas
+SET status=online
+SET game=with servers
+CHOICE /m "Do you want to configure your BOT now?"
+IF %ERRORLEVEL%==2 GOTO :CONFIG
+SET /P prefix=What should be your BOT's prefix? [Default: ?bas]:
+SET /P status=What should be your BOT's status? [Default: online] [online/idle/dnd/invisible]:
+SET /P game=What should be your BOT's game? [Default: with servers]:
+:CONFIG
+ECHO {>config.json
+ECHO   "prefix": "%prefix%",>>config.json
+ECHO   "status": "%status%",>>config.json
+ECHO   "game": "%game%">>config.json
+ECHO }>>config.json
 ECHO [Bastion]: Done. \o/
 ECHO.
 
