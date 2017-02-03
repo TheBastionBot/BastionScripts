@@ -41,7 +41,21 @@ CD Bastion && CALL npm install >nul 2>&1
 ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Finalizing...
-CD settings && COPY config_example.json config.json && COPY credentials_example.json credentials.json && ECHO [Bastion]: Done. \o/
+CD settings && COPY config_example.json config.json && COPY credentials_example.json credentials.json
+CHOICE /m "Do you want to setup credentials now?"
+IF %ERRORLEVEL%==2 GOTO :CREDENTIALS
+SET /P botId=Please enter your BOT ID:
+SET /P token=Please enter BOT Token:
+SET /P ownerID=Please enter your ID:
+:CREDENTIALS
+ECHO {>credentials.json
+ECHO   "botId": "%botID%",>>credentials.json
+ECHO   "token": "%token%",>>credentials.json
+ECHO   "ownerId": [>>credentials.json
+ECHO     "%ownerID%">>credentials.json
+ECHO   ]>>credentials.json
+ECHO }>>credentials.json
+ECHO [Bastion]: Done. \o/
 ECHO.
 
 ECHO [Bastion]: System Initialized. O7
