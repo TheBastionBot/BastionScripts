@@ -64,6 +64,55 @@ echo ""
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done."
 echo ""
+echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
+echo -en "${GREEN}[User]:${NC} "
+read -n 1 -r
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo -e "${CYAN}[Bastion]:${NC} Please enter the BOT ID"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r botId
+    echo -e "${CYAN}[Bastion]:${NC} Please enter the BOT Token"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r token
+    echo -e "${CYAN}[Bastion]:${NC} Please enter the Owner ID"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r ownerId
+fi
+echo "{">credentials.json
+echo "  \"botId\": \"$botId\",">>credentials.json
+echo "  \"token\": \"$token\",">>credentials.json
+echo "  \"ownerId\": [">>credentials.json
+echo "    \"$ownerId\"">>credentials.json
+echo "  ]">>credentials.json
+echo "}">>credentials.json
+echo ""
+echo -e "${CYAN}[Bastion]:${NC} Do you want to configure BOT now?"
+echo -en "${GREEN}[User]:${NC} "
+read -n 1 -r
+echo ""
+prefix="?bas"
+status="online"
+game="with servers"
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo -e "${CYAN}[Bastion]:${NC} What should be the commands' prefix? [Default: ?bas]"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r prefix
+    echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's status? [Default: online]"
+    echo -e "${CYAN}[Bastion]:${NC} [online / idle / dnd / invisible]"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r status
+    echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's game? [Default: with servers]"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r game
+fi
+echo "{">config.json
+echo "  \"prefix\": \"$prefix\",">>config.json
+echo "  \"status\": \"$status\",">>config.json
+echo "  \"game\": \"$game\"">>config.json
+echo "}">>config.json
 
 echo -e "${CYAN}[Bastion]:${NC} System Initialized. O7"
 echo -e "${CYAN}[Bastion]:${NC} Ready to boot up and start running."
