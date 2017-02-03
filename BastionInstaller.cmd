@@ -43,11 +43,15 @@ ECHO [Bastion]: System files successfully installed.
 ECHO [Bastion]: Finalizing...
 CD settings && COPY config_example.json config.json && COPY credentials_example.json credentials.json
 ECHO.
-CHOICE /m "Do you want to setup your credentials now?"
+ECHO [Bastion]: Do you want to setup your credentials now?
+CHOICE /m "[User]: "
 IF %ERRORLEVEL%==2 GOTO :CREDENTIALS
-SET /P botId=Please enter your BOT ID:
-SET /P token=Please enter BOT Token:
-SET /P ownerID=Please enter your ID:
+ECHO [Bastion]: Please enter the BOT ID
+SET /P botId="[User]: "
+ECHO [Bastion]: Please enter the BOT Token
+SET /P token="[User]: "
+ECHO [Bastion]: Please enter the Owner ID
+SET /P ownerID="[User]: "
 :CREDENTIALS
 ECHO {>credentials.json
 ECHO   "botId": "%botID%",>>credentials.json
@@ -61,11 +65,16 @@ ECHO.
 SET prefix=?bas
 SET status=online
 SET game=with servers
-CHOICE /m "Do you want to configure your BOT now?"
+ECHO [Bastion]: Do you want to configure your BOT now?
+CHOICE /m "[User]: "
 IF %ERRORLEVEL%==2 GOTO :CONFIG
-SET /P prefix=What should be your BOT's prefix? [Default: ?bas]:
-SET /P status=What should be your BOT's status? [Default: online] [online/idle/dnd/invisible]:
-SET /P game=What should be your BOT's game? [Default: with servers]:
+ECHO [Bastion]: What should be the commands' prefix? [Default: ?bas]
+SET /P prefix="[User]: "
+ECHO [Bastion]: What should be the BOT's status? [Default: online]
+ECHO [Bastion]: [online / idle / dnd / invisible]
+SET /P status="[User]: "
+ECHO [Bastion]: What should be the BOT's game? [Default: with servers]
+SET /P game="[User]: "
 :CONFIG
 ECHO {>config.json
 ECHO   "prefix": "%prefix%",>>config.json
