@@ -1,2 +1,2 @@
 # Bastion-Scripts
-Scripts for Bastion Discord BOT Installation, Running, etc.
+Scripts for [Bastion Discord BOT](https://github.com/snkrsnkampa/Bastion) Installation, Running, etc.
