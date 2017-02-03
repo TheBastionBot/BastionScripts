@@ -13,10 +13,10 @@ reset
 echo "-------------------------------"
 echo "     Bastion BOT Installer"
 echo "-------------------------------"
-echo ""
+echo
 
 echo -e "${CYAN}[Bastion]:${NC} Initializing System..."
-echo ""
+echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Git installation..."
 if hash git 1>/dev/null 2>&1
@@ -32,7 +32,7 @@ else
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
 fi
-echo ""
+echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Node installation..."
 if hash node 1>/dev/null 2>&1
@@ -52,22 +52,22 @@ else
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
 fi
-echo ""
+echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
-echo ""
+echo
 cd ~ && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
 cd Bastion && npm install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
-echo ""
+echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done."
-echo ""
+echo
 echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
 echo -en "${GREEN}[User]:${NC} "
 read -n 1 -r
-echo ""
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo -e "${CYAN}[Bastion]:${NC} Please enter the BOT ID"
@@ -87,11 +87,11 @@ echo "  \"ownerId\": [">>credentials.json
 echo "    \"$ownerId\"">>credentials.json
 echo "  ]">>credentials.json
 echo "}">>credentials.json
-echo ""
+echo
 echo -e "${CYAN}[Bastion]:${NC} Do you want to configure BOT now?"
 echo -en "${GREEN}[User]:${NC} "
 read -n 1 -r
-echo ""
+echo
 prefix="?bas"
 status="online"
 game="with servers"
@@ -116,4 +116,4 @@ echo "}">>config.json
 
 echo -e "${CYAN}[Bastion]:${NC} System Initialized. O7"
 echo -e "${CYAN}[Bastion]:${NC} Ready to boot up and start running."
-echo ""
+echo
