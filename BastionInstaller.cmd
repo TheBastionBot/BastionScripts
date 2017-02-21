@@ -15,7 +15,7 @@ RMDIR /S /Q Bastion >nul 2>&1
 ECHO.
 
 ECHO [Bastion]: Verifying Git installation...
-git --version >null 2>&1 && ECHO [Bastion]: Git is already installed. Looks good. || (
+git --version >nul 2>&1 && ECHO [Bastion]: Git is already installed. Looks good. || (
 	TITLE [ERROR] Git Not Found
 	ECHO [Bastion]: Git is not installed.
 	ECHO [Bastion]: Make sure you choose the Option "Run Git from the Windows Command Prompt" while installing Git.
