@@ -33,6 +33,7 @@ node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks goo
 ECHO.
 
 ECHO [Bastion]: Installing system files...
+npm install -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server (https://discord.gg/fzx8fkt). && GOTO :EXIT)
 CD /D %USERPROFILE%\Desktop
 git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git >nul 2>&1 || (ECHO [Bastion]: Unable to download Bastion System files. Check your internet connection. && GOTO :EXIT)
 

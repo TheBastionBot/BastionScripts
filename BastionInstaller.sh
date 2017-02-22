@@ -56,6 +56,7 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
+apt-get install -y build-essential 1>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
 cd ~ && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
 cd Bastion && npm install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
