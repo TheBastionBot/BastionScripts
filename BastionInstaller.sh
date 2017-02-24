@@ -7,6 +7,14 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
 
+if [ "$(id -u)" != "0" ]; then
+  reset
+  echo -e "${CYAN}[Bastion]: ${ORANGE}[ERROR] Bastion BOT Installer requires root permissions."
+  hash sudo &>/dev/null || (echo -e "${CYAN}[Bastion]: ${NC} Run this installer with root permissions.\n" && exit 1)
+  sudo ./BastionInstaller.sh
+  exit 1
+fi
+
 cd ~
 reset
 
@@ -16,6 +24,16 @@ echo "-------------------------------"
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Initializing System..."
+if hash apt-get 1>/dev/null 2>&1
+then
+  apt-get update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+  apt-get install -y build-essential &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
+elif hash yum 1>/dev/null 2>&1
+then
+  yum update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+  yum groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing Development Tools by typing: sudo yum groupinstall \"Development Tools\"" && exit 1)
+else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Contact the Bastion BOT team in the help server (https://discord.gg/fzx8fkt) for guide with manual installation." && exit 1
+fi
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Git installation..."
@@ -28,7 +46,7 @@ else
     then apt-get install -y git &> /dev/null && echo -e "${CYAN}[Bastion]:${NC} Done \o/" || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo apt-get install git" && exit 1)
     elif hash yum 1>/dev/null 2>&1
     then yum install -y git &> /dev/null && echo -e "${CYAN}[Bastion]:${NC} Done \o/" || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo yum install git" && exit 1)
-    else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported.${NC} Contact the Bastion BOT team in the help server (https://discord.gg/fzx8fkt) for guide with manual installation." && exit 1
+    else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Contact the Bastion BOT team in the help server (https://discord.gg/fzx8fkt) for guide with manual installation." && exit 1
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
 fi
@@ -48,7 +66,7 @@ else
     then
         wget https://nodejs.org/download/release/v7.4.0/node-v7.4.0.tar.gz || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
         tar xvf node-v7.4.0.tar.gz && cd node-v7.4.0 && yum install gcc gcc-c++ && ./configure && make && make install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node manually." && exit 1)
-    else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported.${NC} Contact the Bastion BOT team in the help server (https://discord.gg/fzx8fkt) for guide with manual installation." && exit 1
+    else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Contact the Bastion BOT team in the help server (https://discord.gg/fzx8fkt) for guide with manual installation." && exit 1
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
 fi
@@ -56,7 +74,6 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
-apt-get install -y build-essential 1>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
 cd ~ && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
 cd Bastion && npm install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
