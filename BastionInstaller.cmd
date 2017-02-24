@@ -1,14 +1,22 @@
 @ECHO off
-TITLE Bastion Installer
 CLS
 COLOR 0F
+SET cwd=%~dp0
+
+NET SESSION >nul 2>&1
+IF %ERRORLEVEL% EQU 0 (
+	TITLE Bastion Installer
+) ELSE (
+  TITLE [ERROR] Permission Denied
+	ECHO [Bastion]: Bastion BOT Installer requires Administrator permissions. Run this installer as Administrator.
+	GOTO :EXIT
+)
+
 ECHO.
 ECHO -------------------------------
 ECHO      Bastion BOT Installer
 ECHO -------------------------------
 ECHO.
-
-SET cwd=%~dp0
 
 ECHO [Bastion]: Initializing System...
 RMDIR /S /Q Bastion >nul 2>&1
@@ -33,12 +41,12 @@ node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks goo
 ECHO.
 
 ECHO [Bastion]: Installing system files...
-npm install -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server (https://discord.gg/fzx8fkt). && GOTO :EXIT)
 CD /D %USERPROFILE%\Desktop
 git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git >nul 2>&1 || (ECHO [Bastion]: Unable to download Bastion System files. Check your internet connection. && GOTO :EXIT)
 
 ::TODO: Find a way to show a message when npm install fails.
 CD Bastion && CALL npm install >nul 2>&1
+npm install -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server https://discord.gg/fzx8fkt. && GOTO :EXIT)
 ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Finalizing...
@@ -93,6 +101,7 @@ EXIT /B 0
 ECHO.
 ECHO [Bastion]: Press any key to exit.
 PAUSE >nul 2>&1
+CLS
 CD /D "%cwd%"
 TITLE Windows Command Prompt (CMD)
 COLOR
