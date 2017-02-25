@@ -82,13 +82,13 @@ SET /P ownerID="[User]: "
 ) > credentials.json
 ECHO [Bastion]: Done. \o/
 ECHO.
-SET prefix=?bas
+SET prefix=bas?
 SET status=online
 SET game=with servers
 ECHO [Bastion]: Do you want to configure your BOT now?
 CHOICE /m "[User]: "
 IF %ERRORLEVEL%==2 GOTO :CONFIG
-ECHO [Bastion]: What should be the commands' prefix? [Default: ?bas]
+ECHO [Bastion]: What should be the commands' prefix? [Default: bas?]
 SET /P prefix="[User]: "
 ECHO [Bastion]: What should be the BOT's status? [Default: online]
 ECHO [Bastion]: [online / idle / dnd / invisible]
