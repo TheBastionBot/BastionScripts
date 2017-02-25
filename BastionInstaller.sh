@@ -45,9 +45,9 @@ then
 else
     echo -e "${CYAN}[Bastion]:${NC} Git not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Git..."
     if hash apt-get 1>/dev/null 2>&1
-    then (apt-get install -y git &>/dev/null && echo -e "${CYAN}[Bastion]:${NC} Done \o/") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo apt-get install git" && exit 1)
+    then apt-get install -y git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo apt-get install git" && exit 1)
     elif hash yum 1>/dev/null 2>&1
-    then (yum install -y git &>/dev/null && echo -e "${CYAN}[Bastion]:${NC} Done \o/") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo yum install git" && exit 1)
+    then yum install -y git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo yum install git" && exit 1)
     else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Contact the Bastion BOT team in the help server (https://discord.gg/fzx8fkt) for guide with manual installation." && exit 1
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
@@ -163,12 +163,12 @@ echo -e "${CYAN}[Bastion]:${NC} Do you want to configure BOT now?"
 echo -en "${GREEN}[User]:${NC} "
 read -n 1 -r
 echo
-prefix="?bas"
+prefix="bas?"
 status="online"
 game="with servers"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    echo -e "${CYAN}[Bastion]:${NC} What should be the commands' prefix? [Default: ?bas]"
+    echo -e "${CYAN}[Bastion]:${NC} What should be the commands' prefix? [Default: bas?]"
     echo -en "${GREEN}[User]:${NC} "
     read -r prefix
     echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's status? [Default: online]"
