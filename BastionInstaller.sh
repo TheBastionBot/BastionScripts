@@ -16,7 +16,6 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 cd ~
-
 echo "[ `date` ]"
 echo -e "${CYAN}[Bastion]:${NC} Bastion BOT Installer"
 echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
@@ -143,7 +142,6 @@ else
     else (cd ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && make install) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
-    cd ~
   fi
 fi
 echo
