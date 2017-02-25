@@ -12,14 +12,15 @@ IF %ERRORLEVEL% EQU 0 (
 	GOTO :EXIT
 )
 
-ECHO.
-ECHO -------------------------------
-ECHO      Bastion BOT Installer
-ECHO -------------------------------
+FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
+SET ldt=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2% %ldt:~8,2%:%ldt:~10,2%:%ldt:~12,6%
+ECHO [ %ldt% ]
+ECHO [Bastion]: Bastion BOT Installer
+ECHO [Bastion]: Starting Installer...
 ECHO.
 
 ECHO [Bastion]: Initializing System...
-RMDIR /S /Q Bastion >nul 2>&1
+MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
 
 ECHO [Bastion]: Verifying Git installation...
