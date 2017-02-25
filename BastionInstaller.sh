@@ -10,13 +10,13 @@ CYAN='\033[0;36m'
 
 if [ "$(id -u)" != "0" ]; then
   echo -e "${CYAN}[Bastion]: ${ORANGE}[ERROR] Bastion BOT Installer requires root permissions.${NC}"
-  hash sudo 1>/dev/null 2>&1 || (echo -e "${CYAN}[Bastion]: ${NC} Run this installer with root permissions.\n" && exit 1)
+  hash sudo &>/dev/null || (echo -e "${CYAN}[Bastion]: ${NC} Run this installer with root permissions.\n" && exit 1)
   sudo ./BastionInstaller.sh
   exit 1
 fi
 
 cd ~
-echo "[ `date` ]"
+echo "[ $(date) ]"
 echo -e "${CYAN}[Bastion]:${NC} Bastion BOT Installer"
 echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
 echo
@@ -69,11 +69,11 @@ else
   if hash dpkg &>/dev/null && ( hash apt &>/dev/null || hash aptitude &>/dev/null )
   then
     curl -sL https://deb.nodesource.com/setup_7.x | bash - || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
-    apt-get install -y nodejs &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo apt-get install nodejs" && exit 1)
+    apt-get install -y nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo apt-get install nodejs" && exit 1)
   elif hash yum &>/dev/null || hash dnf &>/dev/null
   then
     curl -sL https://rpm.nodesource.com/setup_7.x | bash - || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
-    yum -y install nodejs &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo yum install nodejs" && exit 1)
+    yum -y install nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo yum install nodejs" && exit 1)
   else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
   fi
   echo -e "${CYAN}[Bastion]:${NC} Done \o/"
@@ -154,7 +154,7 @@ echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
-cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done."
+cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done." || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Bastion BOT settings directory was not found.${NC} Run the installer again or ask for help in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
 echo
 echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
 echo -en "${GREEN}[User]:${NC} "
