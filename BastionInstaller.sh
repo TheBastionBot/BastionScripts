@@ -9,7 +9,7 @@ ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
 
 if [ "$(id -u)" != "0" ]; then
-  echo -e "${CYAN}[Bastion]: ${ORANGE}[ERROR] Bastion BOT Installer requires root permissions."
+  echo -e "${CYAN}[Bastion]: ${ORANGE}[ERROR] Bastion BOT Installer requires root permissions.${NC}"
   hash sudo 1>/dev/null 2>&1 || (echo -e "${CYAN}[Bastion]: ${NC} Run this installer with root permissions.\n" && exit 1)
   sudo ./BastionInstaller.sh
   exit 1
