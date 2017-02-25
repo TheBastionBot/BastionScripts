@@ -49,6 +49,15 @@ CD Bastion && CALL npm install >nul 2>&1
 npm install -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server https://discord.gg/fzx8fkt. && GOTO :EXIT)
 ECHO [Bastion]: System files successfully installed.
 
+ECHO [Bastion]: Verifying ffmpeg installation...
+ffmpeg >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
+	TITLE [ERROR] ffmpeg Not Found
+	ECHO [Bastion]: ffmpeg is not installed in your computer.
+	ECHO [Bastion]: Make sure to follow the Bastion Windows Installation Guide before running this installer.
+	GOTO :EXIT
+)
+ECHO.
+
 ECHO [Bastion]: Finalizing...
 CD settings && COPY config_example.json config.json && COPY credentials_example.json credentials.json
 ECHO.
@@ -62,13 +71,15 @@ SET /P token="[User]: "
 ECHO [Bastion]: Please enter the Owner ID
 SET /P ownerID="[User]: "
 :CREDENTIALS
-ECHO {>credentials.json
-ECHO   "botId": "%botID%",>>credentials.json
-ECHO   "token": "%token%",>>credentials.json
-ECHO   "ownerId": [>>credentials.json
-ECHO     "%ownerID%">>credentials.json
-ECHO   ]>>credentials.json
-ECHO }>>credentials.json
+(
+	ECHO {
+	ECHO   "botId": "%botID%",
+	ECHO   "token": "%token%",
+	ECHO   "ownerId": [
+	ECHO     "%ownerID%"
+	ECHO   ]
+	ECHO }
+) > credentials.json
 ECHO [Bastion]: Done. \o/
 ECHO.
 SET prefix=?bas
@@ -85,11 +96,13 @@ SET /P status="[User]: "
 ECHO [Bastion]: What should be the BOT's game? [Default: with servers]
 SET /P game="[User]: "
 :CONFIG
-ECHO {>config.json
-ECHO   "prefix": "%prefix%",>>config.json
-ECHO   "status": "%status%",>>config.json
-ECHO   "game": "%game%">>config.json
-ECHO }>>config.json
+(
+	ECHO {
+	ECHO   "prefix": "%prefix%",
+	ECHO   "status": "%status%",
+	ECHO   "game": "%game%"
+	ECHO }
+) > config.json
 ECHO [Bastion]: Done. \o/
 ECHO.
 
