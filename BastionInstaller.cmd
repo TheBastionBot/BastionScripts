@@ -20,6 +20,13 @@ ECHO [Bastion]: Starting Installer...
 ECHO.
 
 ECHO [Bastion]: Initializing System...
+IF EXIST "%PROGRAMFILES(X86)%" (
+	SET BIT=x64
+	bitsadmin /transfer "Downloding WGet" /download /priority high https://eternallybored.org/misc/wget/current/wget64.exe %WINDIR%\wget.exe &>nul
+) ELSE (
+	SET BIT=x86
+	bitsadmin /transfer "Downloding WGet" /download /priority high https://eternallybored.org/misc/wget/current/wget.exe %WINDIR%\wget.exe &>nul
+)
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
 
@@ -36,7 +43,7 @@ ECHO [Bastion]: Verifying Node installation...
 node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks good. || (
 	TITLE [ERROR] Node Not Found
 	ECHO [Bastion]: Node is not installed in your computer.
-	ECHO [Bastion]: Make sure to follow the Bastion Windows Installation Guide before running this installer.
+	ECHO [Bastion]: Make sure to follow the Bastion Windows Installation Guide to install Node before running this installer.
 	GOTO :EXIT
 )
 ECHO.
@@ -54,8 +61,11 @@ ECHO [Bastion]: Verifying ffmpeg installation...
 ffmpeg >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
 	TITLE [ERROR] ffmpeg Not Found
 	ECHO [Bastion]: ffmpeg is not installed in your computer.
-	ECHO [Bastion]: Make sure to follow the Bastion Windows Installation Guide before running this installer.
-	GOTO :EXIT
+	IF "%BIT%" == "x64" (
+		wget https://snkrsnkampa.github.io/Bastion-Site/download/ffmpeg/win/x64/ffmpeg.exe
+	) ELSE (
+		wget https://snkrsnkampa.github.io/Bastion-Site/download/ffmpeg/win/x86/ffmpeg.exe
+	)
 )
 ECHO.
 
