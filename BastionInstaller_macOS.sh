@@ -15,7 +15,8 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-cd ~
+INS_DIR=/home/$SUDO_USER
+cd $INS_DIR
 echo "[ $(date) ]"
 echo -e "${CYAN}[Bastion]:${NC} Bastion BOT Installer"
 echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
@@ -70,7 +71,7 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
-(cd ~ && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
+(cd $INS_DIR && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
 (cd Bastion && npm install) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo

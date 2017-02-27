@@ -15,7 +15,8 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-cd ~
+INS_DIR=/home/$SUDO_USER
+cd $INS_DIR
 echo "[ $(date) ]"
 echo -e "${CYAN}[Bastion]:${NC} Bastion BOT Installer"
 echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
@@ -68,11 +69,11 @@ else
   echo -e "${CYAN}[Bastion]:${NC} Node not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Node..."
   if hash dpkg &>/dev/null && ( hash apt &>/dev/null || hash aptitude &>/dev/null )
   then
-    (curl -sL https://deb.nodesource.com/setup_7.x | bash -) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
+    (curl -sL https://deb.nodesource.com/setup_7.x | bash -) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
     apt-get install -y nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo apt-get install nodejs" && exit 1)
   elif hash yum &>/dev/null || hash dnf &>/dev/null
   then
-    (curl -sL https://rpm.nodesource.com/setup_7.x | bash -) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
+    (curl -sL https://rpm.nodesource.com/setup_7.x | bash -) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
     yum -y install nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo yum install nodejs" && exit 1)
   else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
   fi
@@ -148,7 +149,7 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
-(cd ~ && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
+(cd $INS_DIR && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
 (cd Bastion && npm install) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
