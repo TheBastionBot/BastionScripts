@@ -139,8 +139,8 @@ else
   else
     (cd ~ && git clone -q --depth 1 git://source.ffmpeg.org/ffmpeg) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download ffmpeg.${NC} Check your internet connection." && exit 1)
     if hash checkinstall &>/dev/null
-    then (cd ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && checkinstall --pkgname=ffmpeg --pkgversion="5:$(date +%Y%m%d%H%M)-git" --backup=no --deldoc=yes --fstrans=no --default) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
-    else (cd ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && make install) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
+    then (cd ~ && ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && checkinstall --pkgname=ffmpeg --pkgversion="5:$(date +%Y%m%d%H%M)-git" --backup=no --deldoc=yes --fstrans=no --default) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
+    else (cd ~ && cd ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && make install) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
     fi
     echo -e "${CYAN}[Bastion]:${NC} Done \o/"
   fi
@@ -150,13 +150,13 @@ echo
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
 (cd $INS_DIR && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
-(cd Bastion && npm install) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
+(cd $INS_DIR && cd Bastion && npm install) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 (
-  (cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done.") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Bastion BOT settings directory was not found.${NC} Run the installer again or ask for help in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
+  (cd $INS_DIR && cd Bastion && cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done.") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Bastion BOT settings directory was not found.${NC} Run the installer again or ask for help in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
   echo
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
   echo -en "${GREEN}[User]:${NC} "

@@ -72,13 +72,13 @@ echo
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
 (cd $INS_DIR && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
-(cd Bastion && npm install) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
+(cd $INS_DIR && cd Bastion && npm install) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 (
-  (cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done.") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Bastion BOT settings directory was not found.${NC} Run the installer again or ask for help in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
+  (cd $INS_DIR && cd Bastion && cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done.") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Bastion BOT settings directory was not found.${NC} Run the installer again or ask for help in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
   echo
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
   echo -en "${GREEN}[User]:${NC} "
