@@ -156,8 +156,7 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 (
-  (cd $INS_DIR && cd Bastion && cd settings && cp config_example.json config.json && cp credentials_example.json credentials.json && echo -e "${CYAN}[Bastion]:${NC} Done.") || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Bastion BOT settings directory was not found.${NC} Run the installer again or ask for help in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
-  echo
+  cd $INS_DIR && cd Bastion && cd settings
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
   echo -en "${GREEN}[User]:${NC} "
   read -n 1 -r
@@ -188,19 +187,16 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
   echo -en "${GREEN}[User]:${NC} "
   read -n 1 -r
   echo
-  prefix="bas?"
-  status="online"
-  game="with servers"
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-    echo -e "${CYAN}[Bastion]:${NC} What should be the commands' prefix? [Default: bas?]"
+    echo -e "${CYAN}[Bastion]:${NC} What should be the commands' prefix?"
     echo -en "${GREEN}[User]:${NC} "
     read -r prefix
-    echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's status? [Default: online]"
+    echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's status?"
     echo -e "${CYAN}[Bastion]:${NC} [online / idle / dnd / invisible]"
     echo -en "${GREEN}[User]:${NC} "
     read -r status
-    echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's game? [Default: with servers]"
+    echo -e "${CYAN}[Bastion]:${NC} What should be the BOT's game?"
     echo -en "${GREEN}[User]:${NC} "
     read -r game
   fi
