@@ -22,10 +22,10 @@ ECHO.
 ECHO [Bastion]: Initializing System...
 IF EXIST "%PROGRAMFILES(X86)%" (
 	SET BIT=x64
-	bitsadmin /transfer "Downloding WGet" /download /priority high https://eternallybored.org/misc/wget/current/wget64.exe %WINDIR%\wget.exe &>nul
+	bitsadmin /transfer "Downloading wget" /download /priority high https://eternallybored.org/misc/wget/current/wget64.exe %WINDIR%\wget.exe &>nul
 ) ELSE (
 	SET BIT=x86
-	bitsadmin /transfer "Downloding WGet" /download /priority high https://eternallybored.org/misc/wget/current/wget.exe %WINDIR%\wget.exe &>nul
+	bitsadmin /transfer "Downloading wget" /download /priority high https://eternallybored.org/misc/wget/current/wget.exe %WINDIR%\wget.exe &>nul
 )
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
@@ -62,9 +62,9 @@ ffmpeg >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || 
 	TITLE [ERROR] ffmpeg Not Found
 	ECHO [Bastion]: ffmpeg is not installed in your computer.
 	IF "%BIT%" == "x64" (
-		wget https://snkrsnkampa.github.io/Bastion-Site/download/ffmpeg/win/x64/ffmpeg.exe
+		wget https://sankarsankampa.com/download/ffmpeg/win/x64/ffmpeg.exe >nul 2>&1
 	) ELSE (
-		wget https://snkrsnkampa.github.io/Bastion-Site/download/ffmpeg/win/x86/ffmpeg.exe
+		wget https://sankarsankampa.com/download/ffmpeg/win/x86/ffmpeg.exe >nul 2>&1
 	)
 )
 ECHO.
