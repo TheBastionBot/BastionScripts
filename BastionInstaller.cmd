@@ -20,13 +20,6 @@ ECHO [Bastion]: Starting Installer...
 ECHO.
 
 ECHO [Bastion]: Initializing System...
-IF EXIST "%PROGRAMFILES(X86)%" (
-	SET BIT=x64
-	bitsadmin /transfer "Downloading wget" /download /priority high https://eternallybored.org/misc/wget/current/wget64.exe %WINDIR%\wget.exe &>nul
-) ELSE (
-	SET BIT=x86
-	bitsadmin /transfer "Downloading wget" /download /priority high https://eternallybored.org/misc/wget/current/wget.exe %WINDIR%\wget.exe &>nul
-)
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
 
