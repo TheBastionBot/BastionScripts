@@ -86,64 +86,7 @@ if hash ffmpeg &>/dev/null
 then
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg already installed. Looks good."
 else
-  echo -e "${CYAN}[Bastion]:${NC} ffmpeg not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing ffmpeg..."
-  if hash apt-get &>/dev/null
-  then apt-get install -y ffmpeg &>/dev/null
-  elif hash yum &>/dev/null
-  then yum -y install ffmpeg &>/dev/null
-  elif hash dnf &>/dev/null
-  then dnf -y install ffmpeg &>/dev/null
-  else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
-  fi
-fi
-if hash ffmpeg &>/dev/null
-then
-  echo -e "${CYAN}[Bastion]:${NC} Done \o/"
-else
-  if [ -f /etc/lsb-release ]; then
-    . /etc/lsb-release
-    OS=$DISTRIB_ID
-    VER=$DISTRIB_RELEASE
-  elif [ -f /etc/debian_version ]; then
-    OS='Debian'
-    VER=$(< /etc/debian_version grep -oP "[0-9]+" | head -1 )
-  elif [ -f /etc/centos-release ]; then
-    OS='CentOS'
-    VER=$(< /etc/centos-release grep -oP "[0-9]+" | head -1 )
-  else
-    OS=$(uname -s)
-    VER=$(uname -r)
-  fi
-  if [ "$OS" = "Ubuntu" ]; then
-    if [ "$VER" = "14.04" ]; then
-      (add-apt-repository ppa:mc3man/trusty-media &>/dev/null && apt-get update &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system configurations.${NC} Check your internet connection and try running this installer again." && exit 1)
-      apt-get install -y ffmpeg &>/dev/null
-    fi
-  elif [ "$OS" = "Debian" ]; then
-    if [ "$VER" = "8" ]; then
-      (echo "deb http://ftp.debian.org/debian jessie-backports main" | tee /etc/apt/sources.list.d/debian-backports.list &>/dev/null && apt-get update &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system configurations.${NC} Check your internet connection and try running this installer again." && exit 1)
-      apt-get install -y ffmpeg &>/dev/null
-    fi
-  elif [ "$OS" = "CentOS" ]; then
-    if [ "$VER" = "7" ]; then
-      (rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro &>/dev/null && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm &>/dev/null && yum update --exclude=kernel* &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system configurations.${NC} Check your internet connection and try running this installer again." && exit 1)
-      yum -y install ffmpeg &>/dev/null
-    elif [ "$VER" = "6" ]; then
-      (rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro &>/dev/null && rpm -Uvh http://li.nux.ro/download/nux/dextop/el6/x86_64/nux-dextop-release-0-2.el6.nux.noarch.rpm &>/dev/null && yum update --exclude=kernel* &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system configurations.${NC} Check your internet connection and try running this installer again." && exit 1)
-      yum -y install ffmpeg &>/dev/null
-    fi
-  fi
-  if hash ffmpeg &>/dev/null
-  then
-    echo -e "${CYAN}[Bastion]:${NC} Done \o/"
-  else
-    (cd ~ && git clone -q --depth 1 git://source.ffmpeg.org/ffmpeg) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download ffmpeg.${NC} Check your internet connection." && exit 1)
-    if hash checkinstall &>/dev/null
-    then (cd ~ && ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && checkinstall --pkgname=ffmpeg --pkgversion="5:$(date +%Y%m%d%H%M)-git" --backup=no --deldoc=yes --fstrans=no --default) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
-    else (cd ~ && cd ffmpeg && ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 && make && make install) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install ffmpeg.${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1)
-    fi
-    echo -e "${CYAN}[Bastion]:${NC} Done \o/"
-  fi
+  npm install -g ffmpeg-binaries &>/dev/null  || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install ffmpeg.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support." && exit 1)
 fi
 echo
 

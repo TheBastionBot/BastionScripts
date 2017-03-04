@@ -59,13 +59,10 @@ ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Verifying ffmpeg installation...
 ffmpeg >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
-	TITLE [ERROR] ffmpeg Not Found
+	ECHO [Bastion]: ffmpeg not found.
 	ECHO [Bastion]: ffmpeg is not installed in your computer.
-	IF "%BIT%" == "x64" (
-		wget https://sankarsankampa.com/download/ffmpeg/win/x64/ffmpeg.exe >nul 2>&1
-	) ELSE (
-		wget https://sankarsankampa.com/download/ffmpeg/win/x86/ffmpeg.exe >nul 2>&1
-	)
+	npm install -g ffmpeg-binaries >null 2>&1
+	ECHO [Bastion]: Done.
 )
 ECHO.
 
@@ -91,7 +88,7 @@ SET /P ownerID="[User]: "
 	ECHO   ]
 	ECHO }
 ) > credentials.json
-ECHO [Bastion]: Done. \o/
+ECHO [Bastion]: Done.
 ECHO.
 SET prefix=bas?
 SET status=online
@@ -114,7 +111,7 @@ SET /P game="[User]: "
 	ECHO   "game": "%game%"
 	ECHO }
 ) > config.json
-ECHO [Bastion]: Done. \o/
+ECHO [Bastion]: Done.
 ECHO.
 
 ECHO [Bastion]: System Initialized. O7
