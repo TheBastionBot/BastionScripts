@@ -54,7 +54,7 @@ ECHO [Bastion]: Verifying ffmpeg installation...
 ffmpeg >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
 	ECHO [Bastion]: ffmpeg not found.
 	ECHO [Bastion]: ffmpeg is not installed in your computer.
-	npm install -g ffmpeg-binaries >null 2>&1
+	npm install -g ffmpeg-binaries >nul 2>&1
 	ECHO [Bastion]: Done.
 )
 ECHO.
