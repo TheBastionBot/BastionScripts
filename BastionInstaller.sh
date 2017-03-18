@@ -86,6 +86,7 @@ if hash ffmpeg &>/dev/null
 then
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg already installed. Looks good."
 else
+  echo -e "${CYAN}[Bastion]:${NC} ffmpeg not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing ffmpeg..."
   npm install -g ffmpeg-binaries &>/dev/null  || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install ffmpeg.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support." && exit 1)
 fi
 echo

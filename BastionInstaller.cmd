@@ -20,6 +20,7 @@ ECHO [Bastion]: Starting Installer...
 ECHO.
 
 ECHO [Bastion]: Initializing System...
+RD /S /Q Bastion-Old
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
 
@@ -47,14 +48,13 @@ git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git >nul
 
 ::TODO: Find a way to show a message when npm install fails.
 CD Bastion && CALL npm install >nul 2>&1
-npm install -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server https://discord.gg/fzx8fkt. && GOTO :EXIT)
+CALL npm install -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server https://discord.gg/fzx8fkt. && GOTO :EXIT)
 ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Verifying ffmpeg installation...
-ffmpeg >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
-	ECHO [Bastion]: ffmpeg not found.
-	ECHO [Bastion]: ffmpeg is not installed in your computer.
-	npm install -g ffmpeg-binaries >nul 2>&1
+CALL ffmpeg -h >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
+	ECHO [Bastion]: ffmpeg is not installed in your computer. Installing ffmpeg...
+	CALL npm install -g ffmpeg-binaries >nul 2>&1
 	ECHO [Bastion]: Done.
 )
 ECHO.
@@ -80,7 +80,7 @@ SET /P ownerID="[User]: "
 	ECHO     "%ownerID%"
 	ECHO   ]
 	ECHO }
-) > credentials.json
+) > settings\credentials.json
 ECHO [Bastion]: Done.
 ECHO.
 SET prefix=bas?
@@ -103,7 +103,7 @@ SET /P game="[User]: "
 	ECHO   "status": "%status%",
 	ECHO   "game": "%game%"
 	ECHO }
-) > config.json
+) > settings\config.json
 ECHO [Bastion]: Done.
 ECHO.
 
