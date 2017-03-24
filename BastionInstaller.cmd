@@ -60,7 +60,6 @@ CALL ffmpeg -h >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks g
 ECHO.
 
 ECHO [Bastion]: Finalizing...
-CD settings && COPY config_example.json config.json && COPY credentials_example.json credentials.json
 ECHO.
 ECHO [Bastion]: Do you want to setup your credentials now?
 CHOICE /m "[User]: "
@@ -71,6 +70,8 @@ ECHO [Bastion]: Please enter the BOT Token
 SET /P token="[User]: "
 ECHO [Bastion]: Please enter the Owner ID
 SET /P ownerID="[User]: "
+ECHO [Bastion]: Please enter the Cleverbot API Key
+SET /P chatAPIkey="[User]: "
 :CREDENTIALS
 (
 	ECHO {
@@ -78,7 +79,8 @@ SET /P ownerID="[User]: "
 	ECHO   "token": "%token%",
 	ECHO   "ownerId": [
 	ECHO     "%ownerID%"
-	ECHO   ]
+	ECHO   ],
+	ECHO   "cleverbotAPIkey": "%chatAPIkey%",
 	ECHO }
 ) > settings\credentials.json
 ECHO [Bastion]: Done.
