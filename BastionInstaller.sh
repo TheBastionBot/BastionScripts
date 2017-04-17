@@ -116,7 +116,10 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter the Owner ID"
     echo -en "${GREEN}[User]:${NC} "
     read -r ownerId
-    echo -e "${CYAN}[Bastion]:${NC} Please enter the Cleverbot API Key"
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Google API Key"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r gAPIkey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Cleverbot API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r chatAPIkey
   fi
@@ -127,6 +130,7 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"ownerId\": ["
     echo "    \"$ownerId\""
     echo "  ],"
+    echo "  \"googleAPIkey\": \"$gAPIkey\","
     echo "  \"cleverbotAPIkey\": \"$chatAPIkey\""
     echo "}"
   } > credentials.json

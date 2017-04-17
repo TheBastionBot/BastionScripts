@@ -70,7 +70,9 @@ ECHO [Bastion]: Please enter the BOT Token
 SET /P token="[User]: "
 ECHO [Bastion]: Please enter the Owner ID
 SET /P ownerID="[User]: "
-ECHO [Bastion]: Please enter the Cleverbot API Key
+ECHO [Bastion]: Please enter your Google API Key
+SET /P gAPIkey="[User]: "
+ECHO [Bastion]: Please enter your Cleverbot API Key
 SET /P chatAPIkey="[User]: "
 :CREDENTIALS
 (
@@ -80,6 +82,7 @@ SET /P chatAPIkey="[User]: "
 	ECHO   "ownerId": [
 	ECHO     "%ownerID%"
 	ECHO   ],
+	ECHO   "googleAPIkey": "%gAPIkey%",
 	ECHO   "cleverbotAPIkey": "%chatAPIkey%",
 	ECHO }
 ) > settings\credentials.json
