@@ -20,6 +20,7 @@ ECHO [Bastion]: Starting Installer...
 ECHO.
 
 ECHO [Bastion]: Initializing System...
+CD /D %USERPROFILE%\Desktop
 RD /S /Q Bastion-Old
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
@@ -43,7 +44,6 @@ node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks goo
 ECHO.
 
 ECHO [Bastion]: Installing system files...
-CD /D %USERPROFILE%\Desktop
 git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git >nul 2>&1 || (ECHO [Bastion]: Unable to download Bastion System files. Check your internet connection. && GOTO :EXIT)
 
 ::TODO: Find a way to show a message when npm install fails.
