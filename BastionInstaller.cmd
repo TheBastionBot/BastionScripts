@@ -83,7 +83,7 @@ SET /P chatAPIkey="[User]: "
 	ECHO     "%ownerID%"
 	ECHO   ],
 	ECHO   "googleAPIkey": "%gAPIkey%",
-	ECHO   "cleverbotAPIkey": "%chatAPIkey%",
+	ECHO   "cleverbotAPIkey": "%chatAPIkey%"
 	ECHO }
 ) > settings\credentials.json
 ECHO [Bastion]: Done.
