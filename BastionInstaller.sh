@@ -15,8 +15,7 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-INS_DIR=/home/$SUDO_USER
-cd $INS_DIR
+cd $HOME
 echo "[ $(date) ]"
 echo -e "${CYAN}[Bastion]:${NC} Bastion BOT Installer"
 echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
@@ -93,14 +92,14 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
-(cd $INS_DIR && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
-(cd $INS_DIR && cd Bastion && npm install &>/dev/null) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support." && exit 1)
+(cd $HOME && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
+(cd $HOME && cd Bastion && npm install 1>/dev/null 2>install.log) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support. Please send the install.log log file while asking for support." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 (
-  cd $INS_DIR && cd Bastion && cd settings
+  cd $HOME && cd Bastion && cd settings
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
   echo -en "${GREEN}[User]:${NC} "
   read -n 1 -r
