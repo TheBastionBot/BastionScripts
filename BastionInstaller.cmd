@@ -21,7 +21,7 @@ ECHO.
 
 ECHO [Bastion]: Initializing System...
 CD /D %USERPROFILE%\Desktop
-RD /S /Q Bastion-Old
+RD /S /Q Bastion-Old 2>nul
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
 
