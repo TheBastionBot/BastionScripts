@@ -55,6 +55,7 @@ ECHO [Bastion]: Verifying ffmpeg installation...
 CALL ffmpeg -h >nul 2>&1 && ECHO [Bastion]: ffmpeg is already installed. Looks good. || (
 	ECHO [Bastion]: ffmpeg is not installed in your computer. Installing ffmpeg...
 	CALL npm install -g ffmpeg-binaries >nul 2>&1
+	COPY /Y %AppData%\npm\node_modules\ffmpeg-binaries\bin\*.exe %AppData%\npm >nul
 	ECHO [Bastion]: Done.
 )
 ECHO.
