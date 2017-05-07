@@ -161,6 +161,10 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "}"
   } > config.json
 )
+(
+  cd $INS_DIR && cd Bastion && cd data
+  echo "[]" > favouriteSongs.json
+)
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} System Initialized. O7"

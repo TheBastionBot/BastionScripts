@@ -110,6 +110,9 @@ SET /P game="[User]: "
 	ECHO   "game": "%game%"
 	ECHO }
 ) > settings\config.json
+(
+	ECHO []
+) > data\favouriteSongs.json
 ECHO [Bastion]: Done.
 ECHO.
 
