@@ -29,17 +29,17 @@ if hash apt-get &>/dev/null
 then
   apt-get update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
   apt-get install -y build-essential &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
-  apt-get install -y wget curl checkinstall &>/dev/null
+  apt-get install -y wget curl &>/dev/null
 elif hash yum &>/dev/null
 then
   yum update --exclude=kernel* &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-  yum groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo yum groupinstall \"Development Tools\"" && exit 1)
-  yum -y install wget curl checkinstall &>/dev/null
+  yum -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo yum groupinstall \"Development Tools\"" && exit 1)
+  yum -y install wget curl &>/dev/null
 elif hash dnf &>/dev/null
 then
   dnf update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-  dnf groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo dnf groupinstall \"Development Tools\"" && exit 1)
-  dnf -y install wget curl checkinstall &>/dev/null
+  dnf -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo dnf groupinstall \"Development Tools\"" && exit 1)
+  dnf -y install wget curl &>/dev/null
 else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
 fi
 echo
