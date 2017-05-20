@@ -24,6 +24,8 @@ echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Initializing System..."
+rm -rf Bastion-Old &> /dev/null
+mv -f Bastion Bastion-Old &> /dev/null
 
 echo -e "${CYAN}[Bastion]:${NC} Installing XCode Command Line Tools..."
 xcode-select --install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download & install XCode Command Line Tools.${NC} Check your internet connection and try running this installer again." && exit 1)

@@ -24,6 +24,9 @@ echo -e "${CYAN}[Bastion]:${NC} Starting Installer..."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Initializing System..."
+rm -rf Bastion-Old &> /dev/null
+mv -f Bastion Bastion-Old &> /dev/null
+
 echo -e "${CYAN}[Bastion]:${NC} Updating your system, this may take a while."
 if hash apt-get &>/dev/null
 then
