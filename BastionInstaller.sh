@@ -31,22 +31,22 @@ if [ -d "Bastion" ]; then
   mv -f Bastion Bastion-Old &> /dev/null
 fi
 
-echo -e "${CYAN}[Bastion]:${NC} Updating your system, this may take a while."
+echo -e "${CYAN}[Bastion]:${NC} Updating your system and installing some dependencies, this may take a while."
 if hash apt-get &>/dev/null
 then
   apt-get update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
   apt-get install -y build-essential &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
-  apt-get install -y wget curl &>/dev/null
+  apt-get install -y wget curl python &>/dev/null
 elif hash yum &>/dev/null
 then
   yum update --exclude=kernel* &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
   yum -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo yum groupinstall \"Development Tools\"" && exit 1)
-  yum -y install wget curl &>/dev/null
+  yum -y install wget curl python &>/dev/null
 elif hash dnf &>/dev/null
 then
   dnf update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
   dnf -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo dnf groupinstall \"Development Tools\"" && exit 1)
-  dnf -y install wget curl &>/dev/null
+  dnf -y install wget curl python &>/dev/null
 else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
 fi
 echo
