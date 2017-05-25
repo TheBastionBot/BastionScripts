@@ -118,7 +118,6 @@ ECHO.
 
 ECHO [Bastion]: System Initialized. O7
 ECHO [Bastion]: Ready to boot up and start running.
-EXIT /B 0
 
 :EXIT
 ECHO.
