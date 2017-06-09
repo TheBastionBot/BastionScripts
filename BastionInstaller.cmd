@@ -75,6 +75,10 @@ ECHO [Bastion]: Please enter your Google API Key
 SET /P gAPIkey="[User]: "
 ECHO [Bastion]: Please enter your Tracker Network API Key
 SET /P TRNApiKey="[User]: "
+ECHO [Bastion]: Please enter your HiRez API DevID
+SET /P HiRezDevId="[User]: "
+ECHO [Bastion]: Please enter your HiRez API AuthKey
+SET /P HiRezAuthKey="[User]: "
 ECHO [Bastion]: Please enter your Cleverbot API Key
 SET /P chatAPIkey="[User]: "
 :CREDENTIALS
@@ -87,6 +91,8 @@ SET /P chatAPIkey="[User]: "
 	ECHO   ],
 	ECHO   "googleAPIkey": "%gAPIkey%",
 	ECHO   "TRNApiKey": "%TRNApiKey%",
+	ECHO   "HiRezDevId": "%HiRezDevId%",
+	ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
 	ECHO   "cleverbotAPIkey": "%chatAPIkey%"
 	ECHO }
 ) > settings\credentials.json
