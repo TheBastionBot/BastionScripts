@@ -130,6 +130,12 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Tracker Network API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r TRNApiKey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your HiRez API DevID"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r HiRezDevId
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your HiRez API AuthKey"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r HiRezAuthKey
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Cleverbot API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r chatAPIkey
@@ -143,6 +149,8 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  ],"
     echo "  \"googleAPIkey\": \"$gAPIkey\","
     echo "  \"TRNApiKey\": \"$TRNApiKey\","
+    echo "  \"HiRezDevId\": \"$HiRezDevId\","
+    echo "  \"HiRezAuthKey\": \"$HiRezAuthKey\","
     echo "  \"cleverbotAPIkey\": \"$chatAPIkey\""
     echo "}"
   } > credentials.json
