@@ -108,6 +108,10 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
 (
+  cd "$INS_DIR" && cd Bastion && cd data
+  echo "[]" > favouriteSongs.json
+)
+(
   cd "$INS_DIR" && cd Bastion && cd settings
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
   echo -en "${GREEN}[User]:${NC} "
@@ -179,10 +183,6 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"game\": \"$game\""
     echo "}"
   } > config.json
-)
-(
-  cd "$INS_DIR" && cd Bastion && cd data
-  echo "[]" > favouriteSongs.json
 )
 (
   cd "$INS_DIR" && sudo chown -R "$SUDO_USER":"$(id -gn "$SUDO_USER")" Bastion .config
