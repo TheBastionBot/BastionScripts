@@ -39,8 +39,9 @@ echo -e "${CYAN}[Bastion]:${NC} Installing Homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download & install XCode Command Line Tools.${NC} Check your internet connection and try running this installer again." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} Done."
 echo
-echo -e "${CYAN}[Bastion]:${NC} Updating your system, this may take a while."
+echo -e "${CYAN}[Bastion]:${NC} Updating your system and installing some dependencies, this may take a while."
 brew update || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+brew install screen
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Git installation..."
