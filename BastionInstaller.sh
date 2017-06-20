@@ -184,6 +184,10 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
   cd "$INS_DIR" && cd Bastion && cd data
   echo "[]" > favouriteSongs.json
 )
+(
+  cd "$INS_DIR" && sudo chown -R "$SUDO_USER":"$(id -gn "$SUDO_USER")" Bastion .config
+)
+echo -e "${CYAN}[Bastion]:${NC} Done."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} System Initialized. O7"
