@@ -90,6 +90,8 @@ SET /P chatAPIkey="[User]: "
 	ECHO     "%ownerID%"
 	ECHO   ],
 	ECHO   "googleAPIkey": "%gAPIkey%",
+	ECHO   "twitchClientID": "",
+	ECHO   "twitchClientSecret": "",
 	ECHO   "TRNApiKey": "%TRNApiKey%",
 	ECHO   "HiRezDevId": "%HiRezDevId%",
 	ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
