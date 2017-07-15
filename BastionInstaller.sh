@@ -70,7 +70,7 @@ fi
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Node installation..."
-if hash node &>/dev/null
+if hash node && [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ge 7 ]
 then
   echo -e "${CYAN}[Bastion]:${NC} Node already installed. Looks good."
 else
