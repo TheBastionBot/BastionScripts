@@ -131,6 +131,12 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Google API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r gAPIkey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Twitch API Client ID"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r twitchClientID
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Twitch API Client Secret"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r twitchClientSecret
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Tracker Network API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r TRNApiKey
@@ -155,8 +161,8 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "    \"$ownerId\""
     echo "  ],"
     echo "  \"googleAPIkey\": \"$gAPIkey\","
-    echo "  \"twitchClientID\": \"\","
-    echo "  \"twitchClientSecret\": \"\","
+    echo "  \"twitchClientID\": \"$twitchClientID\","
+    echo "  \"twitchClientSecret\": \"$twitchClientSecret\","
     echo "  \"TRNApiKey\": \"$TRNApiKey\","
     echo "  \"HiRezDevId\": \"$HiRezDevId\","
     echo "  \"HiRezAuthKey\": \"$HiRezAuthKey\","

@@ -73,6 +73,10 @@ ECHO [Bastion]: Please enter the Owner ID
 SET /P ownerID="[User]: "
 ECHO [Bastion]: Please enter your Google API Key
 SET /P gAPIkey="[User]: "
+ECHO [Bastion]: Please enter your Twitch API Client ID
+SET /P twitchClientID="[User]: "
+ECHO [Bastion]: Please enter your Twitch API Client Secret
+SET /P twitchClientSecret="[User]: "
 ECHO [Bastion]: Please enter your Tracker Network API Key
 SET /P TRNApiKey="[User]: "
 ECHO [Bastion]: Please enter your HiRez API DevID
@@ -92,8 +96,8 @@ SET /P chatAPIkey="[User]: "
 	ECHO     "%ownerID%"
 	ECHO   ],
 	ECHO   "googleAPIkey": "%gAPIkey%",
-	ECHO   "twitchClientID": "",
-	ECHO   "twitchClientSecret": "",
+	ECHO   "twitchClientID": "%twitchClientID%",
+	ECHO   "twitchClientSecret": "%twitchClientSecret%",
 	ECHO   "TRNApiKey": "%TRNApiKey%",
 	ECHO   "HiRezDevId": "%HiRezDevId%",
 	ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
