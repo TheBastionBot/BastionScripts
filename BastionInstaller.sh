@@ -25,28 +25,28 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Initializing System..."
 if [ -d "Bastion-Old" ]; then
-  rm -rf Bastion-Old &> /dev/null
+  sudo rm -rf Bastion-Old &> /dev/null
 fi
 if [ -d "Bastion" ]; then
-  mv -f Bastion Bastion-Old &> /dev/null
+  sudo mv -f Bastion Bastion-Old &> /dev/null
 fi
 
 echo -e "${CYAN}[Bastion]:${NC} Updating your system and installing some dependencies, this may take a while."
 if hash apt-get &>/dev/null
 then
-  apt-get update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-  apt-get install -y build-essential &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
-  apt-get install -y wget curl python &>/dev/null
+  sudo apt-get update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+  sudo apt-get install -y build-essential &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install build-essential.${NC} Before running this installer, try installing build-essential by typing: sudo apt-get install build-essential" && exit 1)
+  sudo apt-get install -y wget curl screen python &>/dev/null
 elif hash yum &>/dev/null
 then
-  yum update --exclude=kernel* &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-  yum -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo yum groupinstall \"Development Tools\"" && exit 1)
-  yum -y install wget curl python &>/dev/null
+  sudo yum update --exclude=kernel* &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+  sudo yum -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo yum groupinstall \"Development Tools\"" && exit 1)
+  sudo yum -y install wget curl screen python &>/dev/null
 elif hash dnf &>/dev/null
 then
-  dnf update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-  dnf -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo dnf groupinstall \"Development Tools\"" && exit 1)
-  dnf -y install wget curl screen python &>/dev/null
+  sudo dnf update &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+  sudo dnf -y groupinstall "Development Tools" &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Development Tools.${NC} Before running this installer, try installing Development Tools by typing: sudo dnf groupinstall \"Development Tools\"" && exit 1)
+  sudo dnf -y install wget curl screen python &>/dev/null
 else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
 fi
 echo
@@ -58,11 +58,11 @@ then
 else
   echo -e "${CYAN}[Bastion]:${NC} Git not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Git..."
   if hash apt-get &>/dev/null
-  then apt-get install -y git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo apt-get install git" && exit 1)
+  then sudo apt-get install -y git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo apt-get install git" && exit 1)
   elif hash yum &>/dev/null
-  then yum -y install git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo yum install git" && exit 1)
+  then sudo yum -y install git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo yum install git" && exit 1)
   elif hash dnf &>/dev/null
-  then dnf -y install git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo dnf install git" && exit 1)
+  then sudo dnf -y install git &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Git.${NC} Before running this installer, try installing git by typing: sudo dnf install git" && exit 1)
   else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
   fi
   echo -e "${CYAN}[Bastion]:${NC} Done \o/"
@@ -77,12 +77,12 @@ else
   echo -e "${CYAN}[Bastion]:${NC} Node not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Node..."
   if hash dpkg &>/dev/null && ( hash apt &>/dev/null || hash aptitude &>/dev/null )
   then
-    (curl -sL https://deb.nodesource.com/setup_8.x | bash -) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
-    apt-get install -y nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo apt-get install nodejs" && exit 1)
+    (curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
+    sudo apt-get install -y nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo apt-get install nodejs" && exit 1)
   elif hash yum &>/dev/null || hash dnf &>/dev/null
   then
-    (curl -sL https://rpm.nodesource.com/setup_8.x | bash -) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
-    yum -y install nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo yum install nodejs" && exit 1)
+    (curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash -) &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Node.${NC} Check your internet connection." && exit 1)
+    sudo yum -y install nodejs &>/dev/null || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to install Node.${NC} Before running this installer, try installing node by typing: sudo yum install nodejs" && exit 1)
   else echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Your package manager is currently not supported (by this installer).${NC} Ask for help with manual installation in Bastion BOT Official Server (https://discord.gg/fzx8fkt)." && exit 1
   fi
   echo -e "${CYAN}[Bastion]:${NC} Done \o/"
@@ -95,7 +95,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing ffmpeg..."
-  npm install -g ffmpeg-binaries &>/dev/null  || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install ffmpeg.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support." && exit 1)
+  sudo npm install -g ffmpeg-binaries &>/dev/null  || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install ffmpeg.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support." && exit 1)
 fi
 echo
 
@@ -107,10 +107,6 @@ echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
-(
-  cd "$INS_DIR" && cd Bastion && cd data
-  echo "[]" > favouriteSongs.json
-)
 (
   cd "$INS_DIR" && cd Bastion && cd settings
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
@@ -196,9 +192,6 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"language\": \"english\""
     echo "}"
   } > config.json
-)
-(
-  cd "$INS_DIR" && sudo chown -R "$SUDO_USER":"$(id -gn "$SUDO_USER")" Bastion .config
 )
 echo -e "${CYAN}[Bastion]:${NC} Done."
 echo

@@ -25,23 +25,23 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Initializing System..."
 if [ -d "Bastion-Old" ]; then
-  rm -rf Bastion-Old &> /dev/null
+  sudo rm -rf Bastion-Old &> /dev/null
 fi
 if [ -d "Bastion" ]; then
-  mv -f Bastion Bastion-Old &> /dev/null
+  sudo mv -f Bastion Bastion-Old &> /dev/null
 fi
 
 echo -e "${CYAN}[Bastion]:${NC} Installing XCode Command Line Tools..."
-xcode-select --install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download & install XCode Command Line Tools.${NC} Check your internet connection and try running this installer again." && exit 1)
+sudo xcode-select --install || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download & install XCode Command Line Tools.${NC} Check your internet connection and try running this installer again." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} Done."
 echo
 echo -e "${CYAN}[Bastion]:${NC} Installing Homebrew..."
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download & install XCode Command Line Tools.${NC} Check your internet connection and try running this installer again." && exit 1)
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download & install Homebrew.${NC} Check your internet connection and try running this installer again." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} Done."
 echo
 echo -e "${CYAN}[Bastion]:${NC} Updating your system and installing some dependencies, this may take a while."
-brew update || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-brew install screen
+sudo brew update || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+sudo brew install screen
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Git installation..."
@@ -50,7 +50,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} Git already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} Git not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Git..."
-  brew install git &>/dev/null
+  sudo brew install git &>/dev/null
   echo -e "${CYAN}[Bastion]:${NC} Done."
 fi
 echo
@@ -61,7 +61,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} Node already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} Node not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Node..."
-  brew install node &>/dev/null
+  sudo brew install node &>/dev/null
   echo -e "${CYAN}[Bastion]:${NC} Done."
 fi
 echo
@@ -72,7 +72,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing ffmpeg..."
-  brew install ffmpeg &>/dev/null
+  sudo brew install ffmpeg &>/dev/null
   echo -e "${CYAN}[Bastion]:${NC} Done."
 fi
 echo
@@ -85,10 +85,6 @@ echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
-(
-  cd "$INS_DIR" && cd Bastion && cd data
-  echo "[]" > favouriteSongs.json
-)
 (
   cd "$INS_DIR" && cd Bastion && cd settings
   echo -e "${CYAN}[Bastion]:${NC} Do you want to setup credentials now?"
@@ -174,9 +170,6 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"language\": \"english\""
     echo "}"
   } > config.json
-)
-(
-  cd "$INS_DIR" && sudo chown -R "$SUDO_USER":"$(id -gn "$SUDO_USER")" Bastion .config
 )
 echo -e "${CYAN}[Bastion]:${NC} Done."
 echo
