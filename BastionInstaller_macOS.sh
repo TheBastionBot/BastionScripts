@@ -118,6 +118,9 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter your HiRez API AuthKey"
     echo -en "${GREEN}[User]:${NC} "
     read -r HiRezAuthKey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your The Movie Database API Key"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r theMovieDBApiKey
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Cleverbot API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r chatAPIkey
@@ -135,6 +138,7 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"TRNApiKey\": \"$TRNApiKey\","
     echo "  \"HiRezDevId\": \"$HiRezDevId\","
     echo "  \"HiRezAuthKey\": \"$HiRezAuthKey\","
+    echo "  \"theMovieDBApiKey\": \"$theMovieDBApiKey\","
     echo "  \"cleverbotAPIkey\": \"$chatAPIkey\""
     echo "}"
   } > credentials.json
