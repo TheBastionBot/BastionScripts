@@ -8,6 +8,11 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
 
+if [ "$(id -u)" = "0" ]; then
+  echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Bastion Bot Installer doesn't require root permissions.${NC}"
+  echo -e "${CYAN}[Bastion]: ${NC} You should run this installer without root permissions."
+fi
+
 INS_DIR=/home/$SUDO_USER
 cd "$INS_DIR"
 
