@@ -13,7 +13,7 @@ if [ "$(id -u)" = "0" ]; then
   echo -e "${CYAN}[Bastion]: ${NC} You should run this installer without root permissions."
 fi
 
-INS_DIR=/home/$SUDO_USER
+INS_DIR=/home/$USER
 cd "$INS_DIR"
 
 echo "[ $(date) ]"
