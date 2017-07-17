@@ -5,15 +5,7 @@ reset
 NC='\033[0m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
-
-if [ "$(id -u)" != "0" ]; then
-  echo -e "${CYAN}[Bastion]: ${ORANGE}[ERROR] Bastion BOT Installer requires root permissions.${NC}"
-  hash sudo &>/dev/null || (echo -e "${CYAN}[Bastion]: ${NC} Run this installer with root permissions.\n" && exit 1)
-  sudo ./BastionInstaller_macOS.sh
-  exit 1
-fi
 
 INS_DIR=/home/$SUDO_USER
 cd "$INS_DIR"
