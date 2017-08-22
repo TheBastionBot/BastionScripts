@@ -8,8 +8,8 @@ IF %ERRORLEVEL% EQU 0 (
 	TITLE Bastion Installer
 ) ELSE (
   TITLE [ERROR] Permission Denied
-	ECHO [Bastion]: Bastion Bot Installer requires Administrator permissions. Run this installer as Administrator.
-	GOTO :EXIT
+  ECHO [Bastion]: Bastion Bot Installer requires Administrator permissions. Run this installer as Administrator.
+  GOTO :EXIT
 )
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -30,25 +30,25 @@ choco --version >nul 2>&1 && ECHO [Bastion]: Chocolatey is already installed. Lo
   ECHO [Bastion]: Chocolatey is not installed.
   ECHO [Bastion]: Installing Chocolatey...
   @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-  refreshenv
+  CALL refreshenv
 )
 ECHO.
 
 ECHO [Bastion]: Verifying Git installation...
 git --version >nul 2>&1 && ECHO [Bastion]: Git is already installed. Looks good. || (
-	ECHO [Bastion]: Git is not installed.
-	ECHO [Bastion]: Installing Git...
-	choco install git.install -y
-	refreshenv
+  ECHO [Bastion]: Git is not installed.
+  ECHO [Bastion]: Installing Git...
+  choco install git.install -y
+  CALL refreshenv
 )
 ECHO.
 
 ECHO [Bastion]: Verifying Node installation...
 node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks good. || (
-	ECHO [Bastion]: Node is not installed.
-	ECHO [Bastion]: Installing Node...
-	choco install nodejs.install -y
-  refreshenv
+  ECHO [Bastion]: Node is not installed.
+  ECHO [Bastion]: Installing Node...
+  choco install nodejs.install -y
+  CALL refreshenv
 )
 ECHO.
 
@@ -62,10 +62,10 @@ ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Verifying FFmpeg installation...
 ffmpeg -h >nul 2>&1 && ECHO [Bastion]: FFmpeg is already installed. Looks good. || (
-	ECHO [Bastion]: FFmpeg is not installed.
-	ECHO [Bastion]: Installing FFmpeg...
-	choco install ffmpeg -y
-	refreshenv
+  ECHO [Bastion]: FFmpeg is not installed.
+  ECHO [Bastion]: Installing FFmpeg...
+  choco install ffmpeg -y
+  CALL refreshenv
 )
 ECHO.
 
@@ -99,21 +99,21 @@ ECHO [Bastion]: Please enter your Cleverbot API Key
 SET /P chatAPIkey="[User]: "
 :CREDENTIALS
 (
-	ECHO {
-	ECHO   "botId": "%botID%",
-	ECHO   "token": "%token%",
-	ECHO   "ownerId": [
-	ECHO     "%ownerID%"
-	ECHO   ],
-	ECHO   "googleAPIkey": "%gAPIkey%",
-	ECHO   "twitchClientID": "%twitchClientID%",
-	ECHO   "twitchClientSecret": "%twitchClientSecret%",
-	ECHO   "TRNApiKey": "%TRNApiKey%",
-	ECHO   "HiRezDevId": "%HiRezDevId%",
-	ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
-	ECHO   "theMovieDBApiKey": "%theMovieDBApiKey%",
-	ECHO   "cleverbotAPIkey": "%chatAPIkey%"
-	ECHO }
+  ECHO {
+  ECHO   "botId": "%botID%",
+  ECHO   "token": "%token%",
+  ECHO   "ownerId": [
+  ECHO     "%ownerID%"
+  ECHO   ],
+  ECHO   "googleAPIkey": "%gAPIkey%",
+  ECHO   "twitchClientID": "%twitchClientID%",
+  ECHO   "twitchClientSecret": "%twitchClientSecret%",
+  ECHO   "TRNApiKey": "%TRNApiKey%",
+  ECHO   "HiRezDevId": "%HiRezDevId%",
+  ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
+  ECHO   "theMovieDBApiKey": "%theMovieDBApiKey%",
+  ECHO   "cleverbotAPIkey": "%chatAPIkey%"
+  ECHO }
 ) > settings\credentials.json
 ECHO [Bastion]: Done.
 ECHO.
@@ -133,12 +133,12 @@ ECHO [Bastion]: What should be the Bot's game? [Default: with servers]
 SET /P game="[User]: "
 :CONFIG
 (
-	ECHO {
-	ECHO   "prefix": "%prefix%",
-	ECHO   "status": "%status%",
-	ECHO   "game": "%game%",
-	ECHO   "language": "english"
-	ECHO }
+  ECHO {
+  ECHO   "prefix": "%prefix%",
+  ECHO   "status": "%status%",
+  ECHO   "game": "%game%",
+  ECHO   "language": "english"
+  ECHO }
 ) > settings\config.json
 ECHO [Bastion]: Done.
 ECHO.
