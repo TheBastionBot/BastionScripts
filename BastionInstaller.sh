@@ -8,12 +8,22 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
 
+INS_DIR=/home/$USER
+
 if [ "$(id -u)" = "0" ]; then
   echo -e "${CYAN}[Bastion]: ${ORANGE}[WARNING] Bastion Bot Installer doesn't require root permissions.${NC}"
   echo -e "${CYAN}[Bastion]: ${NC} You should run this installer without root permissions."
+
+  echo -e "${CYAN}[Bastion]:${NC} Are you sure you want to install Bastion as root? Proceed if and only if you know what you are doing."
+  echo -en "${GREEN}[User]:${NC} (y/N) "
+  read -n 1 -r
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    INS_DIR=/root
+  else
+    echo -e "${CYAN}[Bastion]:${NC} Run this installer again without root permission." && exit 0
+  fi
 fi
 
-INS_DIR=/home/$USER
 cd "$INS_DIR"
 
 echo "[ $(date) ]"
