@@ -53,7 +53,7 @@ node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks goo
 ECHO.
 
 ECHO [Bastion]: Installing system files...
-git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git >nul 2>&1 || (ECHO [Bastion]: Unable to download Bastion System files. Check your internet connection. && GOTO :EXIT)
+git clone -b master -q --depth 1 https://github.com/TheBastionBot/Bastion.git >nul 2>&1 || (ECHO [Bastion]: Unable to download Bastion System files. Check your internet connection. && GOTO :EXIT)
 
 ::TODO: Find a way to show a message when npm install fails.
 CD Bastion && CALL npm install --production >nul 2>&1

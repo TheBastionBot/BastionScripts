@@ -99,7 +99,7 @@ echo
 
 echo -e "${CYAN}[Bastion]:${NC} Installing system files..."
 echo
-(cd "$INS_DIR" && git clone -b master -q --depth 1 https://github.com/snkrsnkampa/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
+(cd "$INS_DIR" && git clone -b master -q --depth 1 https://github.com/TheBastionBot/Bastion.git) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download Bastion system files.${NC}" && exit 1)
 (cd "$INS_DIR" && cd Bastion && npm install --production 1>/dev/null 2>install.log) || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to download and install Bastion system dependencies.${NC} Check your internet connection. If you get a ${RED}KILLED${NC} Error, you need to increase the SWAP of your Computer/Server. Please see the F.A.Q or contact Bastion Support. Please send the install.log log file while asking for support." && exit 1)
 echo -e "${CYAN}[Bastion]:${NC} System files successfully installed."
 echo
