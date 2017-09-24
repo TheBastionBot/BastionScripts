@@ -137,8 +137,7 @@ SET /P game="[User]: "
   ECHO {
   ECHO   "prefix": "%prefix%",
   ECHO   "status": "%status%",
-  ECHO   "game": "%game%",
-  ECHO   "language": "english"
+  ECHO   "game": "%game%"
   ECHO }
 ) > settings\config.json
 ECHO [Bastion]: Done.
