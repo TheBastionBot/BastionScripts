@@ -96,6 +96,8 @@ ECHO [Bastion]: Please enter your HiRez API AuthKey
 SET /P HiRezAuthKey="[User]: "
 ECHO [Bastion]: Please enter your The Movie Database API Key
 SET /P theMovieDBApiKey="[User]: "
+ECHO [Bastion]: Please enter your Musixmatch API Key
+SET /P musixmatchAPIKey="[User]: "
 ECHO [Bastion]: Please enter your Cleverbot API Key
 SET /P chatAPIkey="[User]: "
 :CREDENTIALS
@@ -113,6 +115,7 @@ SET /P chatAPIkey="[User]: "
   ECHO   "HiRezDevId": "%HiRezDevId%",
   ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
   ECHO   "theMovieDBApiKey": "%theMovieDBApiKey%",
+  ECHO   "musixmatchAPIKey": "%musixmatchAPIKey%",
   ECHO   "cleverbotAPIkey": "%chatAPIkey%"
   ECHO }
 ) > settings\credentials.json
