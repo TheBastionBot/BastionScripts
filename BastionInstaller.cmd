@@ -108,6 +108,9 @@ SET /P chatAPIkey="[User]: "
   ECHO   "ownerId": [
   ECHO     "%ownerID%"
   ECHO   ],
+	ECHO   "webhook": {
+	ECHO      "bastionLog": ""
+	ECHO    },
   ECHO   "googleAPIkey": "%gAPIkey%",
   ECHO   "twitchClientID": "%twitchClientID%",
   ECHO   "twitchClientSecret": "%twitchClientSecret%",
