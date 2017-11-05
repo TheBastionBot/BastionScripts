@@ -201,6 +201,7 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
   fi
   {
     echo "{"
+    echo "  \"shardCount\": 1,"
     echo "  \"prefix\": \"$prefix\","
     echo "  \"status\": \"$status\","
     echo "  \"game\": \"$game\""

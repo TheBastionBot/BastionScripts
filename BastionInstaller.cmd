@@ -141,6 +141,7 @@ SET /P game="[User]: "
 :CONFIG
 (
   ECHO {
+  ECHO   "shardCount": 1,
   ECHO   "prefix": "%prefix%",
   ECHO   "status": "%status%",
   ECHO   "game": "%game%"
