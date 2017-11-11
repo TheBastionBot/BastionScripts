@@ -39,7 +39,7 @@ ECHO [Bastion]: Verifying Git installation...
 git --version >nul 2>&1 && ECHO [Bastion]: Git is already installed. Looks good. || (
   ECHO [Bastion]: Git is not installed.
   ECHO [Bastion]: Installing Git...
-  choco install git.install -y
+  choco install git -y
   CALL refreshenv
 )
 ECHO.
@@ -48,7 +48,7 @@ ECHO [Bastion]: Verifying Node installation...
 node --version >nul 2>&1 && ECHO [Bastion]: Node is already installed. Looks good. || (
   ECHO [Bastion]: Node is not installed.
   ECHO [Bastion]: Installing Node...
-  choco install nodejs.install -y
+  choco install nodejs --version 8.9.1 -y
   CALL refreshenv
 )
 ECHO.
