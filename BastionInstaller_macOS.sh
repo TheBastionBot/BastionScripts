@@ -109,9 +109,12 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Twitch API Client Secret"
     echo -en "${GREEN}[User]:${NC} "
     read -r twitchClientSecret
-    echo -e "${CYAN}[Bastion]:${NC} Please enter your Tracker Network Key"
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your PUBG Tracker Network Key"
     echo -en "${GREEN}[User]:${NC} "
-    read -r TRNApiKey
+    read -r PUBGAPIKey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Battlefield Tracker Network Key"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r battlefieldAPIKey
     echo -e "${CYAN}[Bastion]:${NC} Please enter your HiRez API DevID"
     echo -en "${GREEN}[User]:${NC} "
     read -r HiRezDevId
@@ -141,7 +144,8 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"googleAPIkey\": \"$gAPIkey\","
     echo "  \"twitchClientID\": \"$twitchClientID\","
     echo "  \"twitchClientSecret\": \"$twitchClientSecret\","
-    echo "  \"TRNApiKey\": \"$TRNApiKey\","
+    echo "  \"PUBGAPIKey\": \"$PUBGAPIKey\","
+    echo "  \"battlefieldAPIKey\": \"$battlefieldAPIKey\","
     echo "  \"HiRezDevId\": \"$HiRezDevId\","
     echo "  \"HiRezAuthKey\": \"$HiRezAuthKey\","
     echo "  \"theMovieDBApiKey\": \"$theMovieDBApiKey\","
