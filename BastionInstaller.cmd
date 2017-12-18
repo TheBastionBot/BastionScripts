@@ -90,6 +90,8 @@ ECHO [Bastion]: Please enter your Twitch API Client Secret
 SET /P twitchClientSecret="[User]: "
 ECHO [Bastion]: Please enter your PUBG Tracker Network API Key
 SET /P PUBGAPIKey="[User]: "
+ECHO [Bastion]: Please enter your Bungie API Key
+SET /P bungieAPIKey="[User]: "
 ECHO [Bastion]: Please enter your Battlefield Tracker Network API Key
 SET /P battlefieldAPIKey="[User]: "
 ECHO [Bastion]: Please enter your HiRez API DevID
@@ -116,6 +118,7 @@ SET /P chatAPIkey="[User]: "
   ECHO   "googleAPIkey": "%gAPIkey%",
   ECHO   "twitchClientID": "%twitchClientID%",
   ECHO   "twitchClientSecret": "%twitchClientSecret%",
+  ECHO   "bungieAPIKey": "%bungieAPIKey%",
   ECHO   "PUBGAPIKey": "%PUBGAPIKey%",
   ECHO   "battlefieldAPIKey": "%battlefieldAPIKey%",
   ECHO   "HiRezDevId": "%HiRezDevId%",
