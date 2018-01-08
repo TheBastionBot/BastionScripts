@@ -92,6 +92,8 @@ ECHO [Bastion]: Please enter your PUBG Tracker Network API Key
 SET /P PUBGAPIKey="[User]: "
 ECHO [Bastion]: Please enter your Bungie API Key
 SET /P bungieAPIKey="[User]: "
+ECHO [Bastion]: Please enter your Fortnite Tracker API Key
+SET /P fortniteAPIKey="[User]: "
 ECHO [Bastion]: Please enter your Battlefield Tracker Network API Key
 SET /P battlefieldAPIKey="[User]: "
 ECHO [Bastion]: Please enter your HiRez API DevID
@@ -121,6 +123,7 @@ SET /P chatAPIkey="[User]: "
   ECHO   "bungieAPIKey": "%bungieAPIKey%",
   ECHO   "PUBGAPIKey": "%PUBGAPIKey%",
   ECHO   "battlefieldAPIKey": "%battlefieldAPIKey%",
+  ECHO   "fortniteAPIKey": "%fortniteAPIKey%",
   ECHO   "HiRezDevId": "%HiRezDevId%",
   ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
   ECHO   "theMovieDBApiKey": "%theMovieDBApiKey%",

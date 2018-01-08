@@ -115,6 +115,9 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Bungie Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r bungieAPIKey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Fortnite Tracker Key"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r fortniteAPIKey
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Battlefield Tracker Network Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r battlefieldAPIKey
@@ -150,6 +153,7 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"bungieAPIKey\": \"$bungieAPIKey\","
     echo "  \"PUBGAPIKey\": \"$PUBGAPIKey\","
     echo "  \"battlefieldAPIKey\": \"$battlefieldAPIKey\","
+    echo "  \"fortniteAPIKey\": \"$fortniteAPIKey\","
     echo "  \"HiRezDevId\": \"$HiRezDevId\","
     echo "  \"HiRezAuthKey\": \"$HiRezAuthKey\","
     echo "  \"theMovieDBApiKey\": \"$theMovieDBApiKey\","
