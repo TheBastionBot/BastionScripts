@@ -184,7 +184,8 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"shardCount\": 1,"
     echo "  \"prefix\": \"$prefix\","
     echo "  \"status\": \"$status\","
-    echo "  \"game\": \"$game\""
+    echo "  \"game\": \"$game\","
+    echo "  \"musicStatus\": true"
     echo "}"
   } > config.json
 )

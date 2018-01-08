@@ -153,7 +153,8 @@ SET /P game="[User]: "
   ECHO   "shardCount": 1,
   ECHO   "prefix": "%prefix%",
   ECHO   "status": "%status%",
-  ECHO   "game": "%game%"
+  ECHO   "game": "%game%",
+  ECHO   "musicStatus": true
   ECHO }
 ) > settings\config.json
 ECHO [Bastion]: Done.
