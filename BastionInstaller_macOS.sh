@@ -185,7 +185,9 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"prefix\": \"$prefix\","
     echo "  \"status\": \"$status\","
     echo "  \"game\": \"$game\","
-    echo "  \"musicStatus\": true"
+    echo "  \"music\": {"
+    echo "    \"status\": false"
+    echo "  \"}"
     echo "}"
   } > config.json
 )

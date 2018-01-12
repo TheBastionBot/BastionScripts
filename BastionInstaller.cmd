@@ -154,7 +154,9 @@ SET /P game="[User]: "
   ECHO   "prefix": "%prefix%",
   ECHO   "status": "%status%",
   ECHO   "game": "%game%",
-  ECHO   "musicStatus": true
+  ECHO   "music": {
+  ECHO     "status": false
+  ECHO   }
   ECHO }
 ) > settings\config.json
 ECHO [Bastion]: Done.
