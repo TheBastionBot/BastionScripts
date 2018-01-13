@@ -155,7 +155,8 @@ SET /P game="[User]: "
   ECHO   "status": "%status%",
   ECHO   "game": "%game%",
   ECHO   "music": {
-  ECHO     "status": false
+  ECHO     "status": false,
+  ECHO     "passes": 1
   ECHO   }
   ECHO }
 ) > settings\config.json
