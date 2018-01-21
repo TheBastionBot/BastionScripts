@@ -157,7 +157,6 @@ SET /P game="[User]: "
   ECHO   "shardCount": 1,
   ECHO   "prefix": "%prefix%",
   ECHO   "status": "%status%",
-  ECHO   "game": "%game%",
   ECHO   "game": {
   ECHO     "type": "%activity%",
   ECHO     "name": "%game%"
