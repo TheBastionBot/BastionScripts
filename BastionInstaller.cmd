@@ -84,6 +84,10 @@ ECHO [Bastion]: Please enter the Owner ID
 SET /P ownerID="[User]: "
 ECHO [Bastion]: Please enter your Google API Key
 SET /P gAPIkey="[User]: "
+ECHO [Bastion]: Please enter your GitHub Personal Access Token
+SET /P githubAccessToken="[User]: "
+ECHO [Bastion]: Please enter your Patreon Creator Access Token
+SET /P patreonCreatorAccessToken="[User]: "
 ECHO [Bastion]: Please enter your Twitch API Client ID
 SET /P twitchClientID="[User]: "
 ECHO [Bastion]: Please enter your Twitch API Client Secret
@@ -128,7 +132,16 @@ SET /P chatAPIkey="[User]: "
   ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
   ECHO   "theMovieDBApiKey": "%theMovieDBApiKey%",
   ECHO   "musixmatchAPIKey": "%musixmatchAPIKey%",
-  ECHO   "cleverbotAPIkey": "%chatAPIkey%"
+  ECHO   "cleverbotAPIkey": "%chatAPIkey%",
+	ECHO   "github": {
+	ECHO      "accessToken": "%githubAccessToken%"
+	ECHO    },
+	ECHO   "patreon": {
+	ECHO      "clientID": "",
+	ECHO      "clientSecret": "",
+	ECHO      "creatorAccessToken": "%patreonCreatorAccessToken%",
+	ECHO      "creatorRefreshToken": ""
+	ECHO    }
   ECHO }
 ) > settings\credentials.json
 ECHO [Bastion]: Done.
