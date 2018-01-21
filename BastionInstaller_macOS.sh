@@ -103,6 +103,12 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Google API Key"
     echo -en "${GREEN}[User]:${NC} "
     read -r gAPIkey
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your GitHub Personal Access Token"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r githubAccessToken
+    echo -e "${CYAN}[Bastion]:${NC} Please enter your Patreon Creator Access Token"
+    echo -en "${GREEN}[User]:${NC} "
+    read -r patreonCreatorAccessToken
     echo -e "${CYAN}[Bastion]:${NC} Please enter your Twitch API Client ID"
     echo -en "${GREEN}[User]:${NC} "
     read -r twitchClientID
@@ -158,7 +164,16 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"HiRezAuthKey\": \"$HiRezAuthKey\","
     echo "  \"theMovieDBApiKey\": \"$theMovieDBApiKey\","
     echo "  \"musixmatchAPIKey\": \"$musixmatchAPIKey\","
-    echo "  \"cleverbotAPIkey\": \"$chatAPIkey\""
+    echo "  \"cleverbotAPIkey\": \"$chatAPIkey\","
+    echo "  \"github\": {"
+    echo "    \"accessToken\": \"$githubAccessToken\""
+    echo "  },"
+    echo "  \"patreon\": {"
+    echo "    \"clientID\": \"\","
+    echo "    \"clientSecret\": \"\","
+    echo "    \"creatorAccessToken\": \"$patreonCreatorAccessToken\","
+    echo "    \"creatorRefreshToken\": \"\""
+    echo "  }"
     echo "}"
   } > credentials.json
   echo
