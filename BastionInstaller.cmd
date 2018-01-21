@@ -161,7 +161,7 @@ SET /P game="[User]: "
   ECHO   "game": {
   ECHO     "type": "%activity%",
   ECHO     "name": "%game%"
-  ECHO   }
+  ECHO   },
   ECHO   "music": {
   ECHO     "status": false,
   ECHO     "passes": 1
