@@ -136,16 +136,20 @@ ECHO.
 
 SET prefix=#!
 SET status=online
-SET game=with servers
+SET activity=Playing
+SET game=with Ganymede
 ECHO [Bastion]: Do you want to configure your Bot now?
 CHOICE /m "[User]: "
 IF %ERRORLEVEL%==2 GOTO :CONFIG
-ECHO [Bastion]: What should be the commands' prefix? [Default: bas?]
+ECHO [Bastion]: What should be the commands' prefix? [Default: #!]
 SET /P prefix="[User]: "
 ECHO [Bastion]: What should be the Bot's status? [Default: online]
 ECHO [Bastion]: [online / idle / dnd / invisible]
 SET /P status="[User]: "
-ECHO [Bastion]: What should be the Bot's game? [Default: with servers]
+ECHO [Bastion]: What should be the Bot's activity? [Default: Playing]
+ECHO [Bastion]: [Playing / Watching / Listening]
+SET /P activity="[User]: "
+ECHO [Bastion]: What should be the Bot's game?
 SET /P game="[User]: "
 :CONFIG
 (
@@ -154,6 +158,10 @@ SET /P game="[User]: "
   ECHO   "prefix": "%prefix%",
   ECHO   "status": "%status%",
   ECHO   "game": "%game%",
+  ECHO   "game": {
+  ECHO     "type": "%activity%",
+  ECHO     "name": "%game%"
+  ECHO   }
   ECHO   "music": {
   ECHO     "status": false,
   ECHO     "passes": 1
