@@ -21,7 +21,7 @@ ECHO [Bastion]: Starting Installer...
 ECHO.
 
 ECHO [Bastion]: Initializing System...
-CD /D %USERPROFILE%\Desktop
+CD /D %USERPROFILE%
 RD /S /Q Bastion-Old 2>nul
 MOVE /Y Bastion Bastion-Old >nul 2>&1
 ECHO.
