@@ -242,7 +242,7 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
     echo "  \"music\": {"
     echo "    \"status\": false,"
     echo "    \"passes\": 1"
-    echo "  \"}"
+    echo "  }"
     echo "}"
   } > config.json
 )
