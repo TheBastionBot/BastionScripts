@@ -132,6 +132,7 @@ SET /P chatAPIkey="[User]: "
   ECHO   "fortniteAPIKey": "%fortniteAPIKey%",
   ECHO   "HiRezDevId": "%HiRezDevId%",
   ECHO   "HiRezAuthKey": "%HiRezAuthKey%",
+  ECHO   "rocketLeagueUserToken": "",
   ECHO   "theMovieDBApiKey": "%theMovieDBApiKey%",
   ECHO   "IGDBUserKey": "%IGDBUserKey%",
   ECHO   "musixmatchAPIKey": "%musixmatchAPIKey%",
