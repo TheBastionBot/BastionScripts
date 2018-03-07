@@ -120,6 +120,10 @@ SET /P chatAPIkey="[User]: "
   ECHO   "ownerId": [
   ECHO     "%ownerID%"
   ECHO   ],
+  ECHO   "database": {
+  ECHO     "dialect": "sqlite",
+  ECHO     "URI": "sqlite:data/bastion.db"
+  ECHO   },
 	ECHO   "webhooks": {
 	ECHO      "bastionLog": ""
 	ECHO    },
