@@ -259,3 +259,7 @@ echo
 echo -e "${CYAN}[Bastion]:${NC} System Initialized. O7"
 echo -e "${CYAN}[Bastion]:${NC} Ready to boot up and start running."
 echo
+
+echo -e "${CYAN}[Bastion]:${NC} Join my official server to stay updated about new releases, important announcements, a lot of other things and giveaways too!"
+echo -e "${CYAN}[Bastion]:${NC} https://discord.gg/fzx8fkt"
+echo
