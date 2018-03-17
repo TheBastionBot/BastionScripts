@@ -195,6 +195,11 @@ ECHO.
 
 ECHO [Bastion]: System Initialized. O7
 ECHO [Bastion]: Ready to boot up and start running.
+ECHO.
+
+ECHO [Bastion]: Join my official server to stay updated about new releases, important announcements, a lot of other things and giveaways too!
+ECHO [Bastion]: https://discord.gg/fzx8fkt
+ECHO.
 
 :EXIT
 ECHO.
