@@ -179,6 +179,7 @@ SET /P game="[User]: "
   ECHO     "name": [
   ECHO       "%game%"
   ECHO     ],
+	ECHO     "url": "",
 	ECHO     "interval": 60
   ECHO   },
   ECHO   "music": {
