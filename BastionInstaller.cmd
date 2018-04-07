@@ -182,7 +182,9 @@ SET /P game="[User]: "
   ECHO     "type": "%activity%",
   ECHO     "name": [
   ECHO       "%game%"
-  ECHO     ]
+  ECHO     ],
+	ECHO     "url": "",
+	ECHO     "interval": 60
   ECHO   },
   ECHO   "music": {
   ECHO     "status": false,
