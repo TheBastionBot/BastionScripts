@@ -189,7 +189,8 @@ SET /P game="[User]: "
   ECHO   "music": {
   ECHO     "status": false,
   ECHO     "passes": 1
-  ECHO   }
+  ECHO   },
+	ECHO   "logLevel": 6
   ECHO }
 ) > settings\config.json
 ECHO [Bastion]: Done.
