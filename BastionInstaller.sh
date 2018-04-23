@@ -242,7 +242,7 @@ echo -e "${CYAN}[Bastion]:${NC} Finalizing..."
   {
     echo "{"
     echo "  \"shardCount\": 1,"
-    echo "  \"prefix\": \"$prefix\","
+    echo "  \"prefix\": [ \"$prefix\" ],"
     echo "  \"status\": \"$status\","
     echo "  \"game\": {"
     echo "    \"type\": \"$activity\","
