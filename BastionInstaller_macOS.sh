@@ -38,8 +38,8 @@ echo -e "${CYAN}[Bastion]:${NC} Installing Homebrew..."
 echo -e "${CYAN}[Bastion]:${NC} Done."
 echo
 echo -e "${CYAN}[Bastion]:${NC} Updating your system and installing some dependencies, this may take a while."
-sudo brew update || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
-sudo brew install screen
+brew update || (echo -e "${CYAN}[Bastion]: ${RED}[ERROR] Unable to update system.${NC} Check your internet connection and try running this installer again." && exit 1)
+brew install screen
 echo
 
 echo -e "${CYAN}[Bastion]:${NC} Verifying Git installation..."
@@ -48,7 +48,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} Git already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} Git not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Git..."
-  sudo brew install git &>/dev/null
+  brew install git &>/dev/null
   echo -e "${CYAN}[Bastion]:${NC} Done."
 fi
 echo
@@ -59,7 +59,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} Node already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} Node not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing Node..."
-  sudo brew install node &>/dev/null
+  brew install node &>/dev/null
   echo -e "${CYAN}[Bastion]:${NC} Done."
 fi
 echo
@@ -70,7 +70,7 @@ then
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg already installed. Looks good."
 else
   echo -e "${CYAN}[Bastion]:${NC} ffmpeg not installed." && echo -e "${CYAN}[Bastion]:${NC} Installing ffmpeg..."
-  sudo brew install ffmpeg &>/dev/null
+  brew install ffmpeg &>/dev/null
   echo -e "${CYAN}[Bastion]:${NC} Done."
 fi
 echo
