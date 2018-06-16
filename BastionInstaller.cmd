@@ -57,8 +57,8 @@ ECHO [Bastion]: Installing system files...
 git clone -b stable -q --depth 1 https://github.com/TheBastionBot/Bastion.git >nul 2>&1 || (ECHO [Bastion]: Unable to download Bastion System files. Check your internet connection. && GOTO :EXIT)
 
 ::TODO: Find a way to show a message when npm install fails.
-CD Bastion && CALL npm i --only=production --no-package-lock >nul 2>&1
 CALL npm i -g windows-build-tools >nul 2>&1 || (ECHO [Bastion]: Unable to install windows-build-tools. Check your internet connection or ask for help in Bastion help server https://discord.gg/fzx8fkt. && GOTO :EXIT)
+CD Bastion && CALL npm i --only=production --no-package-lock >nul 2>&1
 ECHO [Bastion]: System files successfully installed.
 
 ECHO [Bastion]: Verifying FFmpeg installation...
