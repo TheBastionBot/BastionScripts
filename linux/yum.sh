@@ -126,7 +126,8 @@ function install::package_group() {
 function install::packages() {
   print::bastion "Updating your system and installing required packages..."
 
-  sudo yum -y -q update --exclude=kernel* || print::error "Unable to update system."
+  # Although this isn't required, we do it just-in-case
+  sudo yum -y -q check-update || print::error "Unable to update system."
 
   install::package "curl"
   install::package "wget"
