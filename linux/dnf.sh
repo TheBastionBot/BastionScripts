@@ -111,6 +111,7 @@ function install::package() {
 # Params:
 #   $@ The list of package group name
 function install::package_group() {
+  # TODO: Check if `groupinstall` still works with `dnf`
   sudo dnf -y -q groupinstall $@ || \
     print::error "Unable to download and install $@."
 }
@@ -134,6 +135,7 @@ function install::packages() {
   install::package "screen"
   install::package "python"
   install::package "git"
+  # TODO: Check if "Development Tools" is the right package group
   install::package_group "Development Tools"
 
   print::done
