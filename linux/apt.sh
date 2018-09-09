@@ -128,7 +128,7 @@ function install::package_group() {
 function install::packages() {
   print::bastion "Updating your system and installing required packages..."
 
-  sudo apt update -qq || print::error "Unable to update system."
+  sudo apt update -qq || print::error "Unable to update package list."
 
   install::package "curl"
   install::package "wget"

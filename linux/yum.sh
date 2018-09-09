@@ -127,7 +127,7 @@ function install::packages() {
   print::bastion "Updating your system and installing required packages..."
 
   # Although this isn't required, we do it just-in-case
-  sudo yum -y -q check-update || print::error "Unable to update system."
+  sudo yum -y -q check-update || print::error "Unable to update package list."
 
   install::package "curl"
   install::package "wget"
