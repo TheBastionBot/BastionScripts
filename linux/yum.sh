@@ -124,7 +124,7 @@ function install::package_group() {
 #   5. git
 #   6. Development Tools
 function install::packages() {
-  print::bastion "Updating your system and installing required packages..."
+  print::bastion "Installing required system packages..."
 
   # Although this isn't required, we do it just-in-case
   sudo yum -y -q check-update || print::error "Unable to update package list."

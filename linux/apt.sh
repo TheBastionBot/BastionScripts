@@ -126,7 +126,7 @@ function install::package_group() {
 #   5. git
 #   6. build-essential
 function install::packages() {
-  print::bastion "Updating your system and installing required packages..."
+  print::bastion "Installing required system packages..."
 
   sudo apt update -qq || print::error "Unable to update package list."
 
