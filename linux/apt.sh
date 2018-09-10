@@ -181,7 +181,7 @@ function bastion::dependencies() {
 
   install::package "ffmpeg"
 
-  npm install --global yarn 1>/dev/null || \
+  sudo npm install --global yarn 1>/dev/null || \
     print::error "Unable to download and install Yarn."
 
   cd "$BASTION_DIR"
