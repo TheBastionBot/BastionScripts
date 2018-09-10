@@ -144,7 +144,7 @@ function install::nodejs() {
 
   if ! hash node &>/dev/null; then
     (curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash -) &>/dev/null || \
-      (print::error "Unable to download add node source." && exit 1)
+      (print::error "Unable to add node source." && exit 1)
     install::package "nodejs"
   fi
 
