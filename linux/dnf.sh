@@ -111,7 +111,9 @@ function install::package() {
 # Params:
 #   $@ The list of package group name
 function install::package_group() {
-  sudo dnf -y -q groupinstall $@ || \
+  # TODO: Find a proper way to do this.
+  # Redirect STDERR TO STDOUT because even if it's installed, it gives error
+  sudo dnf -y -q groupinstall $@ &>&1 || \
     print::error "Unable to download and install $@."
 }
 
