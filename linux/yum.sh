@@ -111,7 +111,7 @@ function install::package() {
 # Params:
 #   $@ The list of package group name
 function install::package_group() {
-  sudo yum -y -q groupinstall $@ || \
+  sudo yum -y -q groupinstall "$@" || \
     print::error "Unable to download and install $@."
 }
 

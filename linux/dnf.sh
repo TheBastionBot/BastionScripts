@@ -113,7 +113,7 @@ function install::package() {
 function install::package_group() {
   # TODO: Find a proper way to do this.
   # Redirect STDERR TO STDOUT because even if it's installed, it gives error
-  sudo dnf -y -q groupinstall $@ 2>&1 || \
+  sudo dnf -y -q groupinstall "$@" 2>&1 || \
     print::error "Unable to download and install $@."
 }
 
