@@ -133,7 +133,7 @@ function install::packages() {
   install::package "screen"
   install::package "python"
   install::package "git"
-  install::package_group "Development Tools"
+  install::package_group "C Development Tools and Libraries"
 
   print::done
 }
