@@ -127,9 +127,6 @@ function install::package_group() {
 function install::packages() {
   print::bastion "Installing required system packages..."
 
-  # Although this isn't required, we do it just-in-case
-  sudo dnf -y -q check-update || print::error "Unable to update package list."
-
   install::package "curl"
   install::package "wget"
   install::package "screen"
