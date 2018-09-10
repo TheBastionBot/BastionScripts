@@ -113,7 +113,7 @@ function install::package() {
 function install::package_group() {
   # TODO: Find a proper way to do this.
   # Redirect STDERR TO STDOUT because even if it's installed, it gives error
-  sudo yum -y -q groupinstall $@ &>&1 || \
+  sudo yum -y -q groupinstall $@ 2>&1 || \
     print::error "Unable to download and install $@."
 }
 
