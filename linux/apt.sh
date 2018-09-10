@@ -101,7 +101,7 @@ function check_sudo() {
 # Params:
 #   $@ The list of package names
 function install::package() {
-  if ! hash $@; then
+  if ! hash $@ &>/dev/null; then
     sudo apt install -qq -y $@ || \
       print::error "Unable to download and install $@."
   fi
@@ -144,7 +144,7 @@ function install::packages() {
 function install::nodejs() {
   print::bastion "Installing Node.js..."
 
-  if ! hash node; then
+  if ! hash node &>/dev/null; then
     (curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -) &>/dev/null || \
       (print::error "Unable to download add node source." && exit 1)
     install::package "nodejs"
