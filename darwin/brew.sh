@@ -137,7 +137,7 @@ function install::nodejs() {
   print::bastion "Installing Node.js..."
 
   if ! hash node &>/dev/null; then
-    brew install "node@8" || \
+    brew install "node@10" || \
       print::error "Unable to download and install Node.js."
   fi
 
