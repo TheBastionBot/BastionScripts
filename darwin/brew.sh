@@ -141,7 +141,7 @@ function install::nodejs() {
       print::error "Unable to download and install Node.js."
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 8 ]; then
+  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 10 ]; then
     print::error "Please upgrade Node.js LTS before running the installer again."
   fi
 
