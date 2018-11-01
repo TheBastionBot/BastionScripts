@@ -151,7 +151,7 @@ function install::nodejs() {
   fi
 
   if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 8 ]; then
-    print::error "Please upgrade Node.js v8 LTS before running the installer again."
+    print::error "Please upgrade to Node.js LTS before running the installer again."
   fi
 
   print::done
