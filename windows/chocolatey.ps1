@@ -119,6 +119,7 @@ Function Install::Packages() {
   }
 
   Install::Package "visualstudio2017buildtools"
+  Install::Package "visualstudio2017-workload-vctools"
   Install::Package "python2"
   Install::Package "git"
 
