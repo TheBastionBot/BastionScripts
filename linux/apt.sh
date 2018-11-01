@@ -195,8 +195,8 @@ function bastion::dependencies() {
 function bastion::configure() {
   print::bastion "Finalizing..."
 
-  cp "$BASTION_SETTINGS_DIR/config_example.json" "$BASTION_SETTINGS_DIR/config.json"
-  cp "$BASTION_SETTINGS_DIR/credentials_example.json" "$BASTION_SETTINGS_DIR/credentials.json"
+  cp "$BASTION_SETTINGS_DIR/config.example.yaml" "$BASTION_SETTINGS_DIR/config.yaml"
+  cp "$BASTION_SETTINGS_DIR/credentials.example.yaml" "$BASTION_SETTINGS_DIR/credentials.yaml"
 
   print::done
 }
