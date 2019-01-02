@@ -118,7 +118,7 @@ function install::packages() {
   print::bastion "Installing required system packages..."
 
   sudo xcode-select --install || \
-    print::error "Unable to download & install XCode Command Line Tools."
+    print::warning "Unable to download & install XCode Command Line Tools. Maybe it's already installed?"
 
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || \
     print::error "Unable to download & install Homebrew."
