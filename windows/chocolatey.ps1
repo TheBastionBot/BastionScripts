@@ -185,7 +185,7 @@ Function Bastion::Dependencies() {
 Function Bastion::Configure() {
   Print::Bastion "Finalizing..."
 
-  Copy-Item "$BASTION_SETTINGS_DIR\config.example.yaml" "$BASTION_SETTINGS_DIR\config.yaml"
+  Copy-Item "$BASTION_SETTINGS_DIR\configurations.example.yaml" "$BASTION_SETTINGS_DIR\configurations.yaml"
   Copy-Item "$BASTION_SETTINGS_DIR\credentials.example.yaml" "$BASTION_SETTINGS_DIR\credentials.yaml"
 
   Print::Done
