@@ -102,6 +102,7 @@ Function Install::Package($1) {
   If (-Not ($?)) {
     Print::Error "Unable to download and install $1."
   }
+  refreshenv
 }
 
 # Function to install system packages required by Bastion
