@@ -108,9 +108,10 @@ Function Install::Package($1) {
 # Function to install system packages required by Bastion
 # List of packages:
 #   1. Chocolatey
-#   2. Visual Studio Build Tools
-#   3. Python 2.x
-#   4. FFMpeg
+#   2. NodeJS
+#   3. Git
+#   4. Visual Studio Build Tools
+#   5. Python 2.x
 Function Install::Packages() {
   Print::Bastion "Installing required system packages..."
 
@@ -119,10 +120,12 @@ Function Install::Packages() {
     Print::Error "Unable to download and install Chocolatey."
   }
 
-  Install::Package "visualstudio2017buildtools"
-  Install::Package "visualstudio2017-workload-vctools"
-  Install::Package "python2"
+  # Install Node.js
+  Install::NodeJS
+
   Install::Package "git"
+
+  npm i -g windows-build-tools
 
   Print::Done
 }
@@ -205,9 +208,6 @@ Function Main() {
 
   # Install required system packages
   Install::Packages
-
-  # Install Node.js
-  Install::NodeJS
 
   # Clone Bastion from GitHub
   Install::Bastion
