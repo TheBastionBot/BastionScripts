@@ -6,6 +6,21 @@
 # install Bastion on Windows operating systems with the chocolatey package
 # manager. It installs Bastion and all the required dependencies and packages.
 
+# Function to test if the script is running with administrative privileges
+function Administrator-Test {
+    $CurrentUser = [Security.Principal.WindowsIdentity]::GetCurrent();
+    (New-Object Security.Principal.WindowsPrincipal $CurrentUser).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+}
+
+# Check whether the installer has administrative privileges.
+# If not, run it as administrator.
+if ((Administrator-Test) -eq $False) {
+    # Not running with elevated perms, so let's run it as administrator.
+    PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -NoExit -ExecutionPolicy Unrestricted -File "$MyInvocation.MyCommand.Definition"' -Verb RunAs}";
+    # We need to exit it otherwise the rest of the script will keep on running.
+    Exit 0
+}
+
 # Set local variables for use in script
 $BASTION_DIR="$HOME/Bastion"
 $BASTION_SETTINGS_DIR="$BASTION_DIR/settings"
