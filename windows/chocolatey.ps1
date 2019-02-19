@@ -142,6 +142,8 @@ Function Install::Packages() {
 
   npm i -g windows-build-tools
 
+  Install::Package "python2"
+
   Print::Done
 }
 
