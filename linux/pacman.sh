@@ -102,7 +102,7 @@ function check_sudo() {
 #   $@ The list of package names
 function install::package() {
   if ! hash $@ &>/dev/null; then
-    sudo pacman -Sy --noconfirm $@ || \
+    sudo pacman -Sy --needed --noconfirm $@ || \
       print::error "Unable to download and install $@."
   fi
 }
@@ -125,7 +125,8 @@ function install::packages() {
   install::package "git"
   install::package "base-devel"
   install::package "nodejs"
-
+  install::package "npm"
+  
   print::done
 }
 
@@ -192,9 +193,6 @@ function main() {
 
   # Install required system packages
   install::packages
-
-  # Install Node.js
-  install::nodejs
 
   # Clone Bastion from GitHub
   install::bastion
