@@ -137,11 +137,11 @@ function install::nodejs() {
   print::bastion "Installing Node.js..."
 
   if ! hash node &>/dev/null; then
-    brew install "node@10" || \
+    brew install "node@12" || \
       print::error "Unable to download and install Node.js."
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 10 ]; then
+  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 12 ]; then
     print::error "Please upgrade Node.js LTS before running the installer again."
   fi
 
