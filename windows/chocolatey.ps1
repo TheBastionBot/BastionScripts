@@ -174,7 +174,7 @@ Function Install::Bastion() {
     Move-Item -Path .\Bastion -Destination .\Bastion-Old -Force
   }
 
-  git clone -b stable -q --depth 1 "$BASTION_REPO"
+  git clone -b master -q --depth 1 "$BASTION_REPO"
   If (-Not ($?)) {
     Print::Error "Unable to download Bastion system files."
   }

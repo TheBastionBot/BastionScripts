@@ -126,7 +126,7 @@ function install::packages() {
   install::package "base-devel"
   install::package "nodejs"
   install::package "npm"
-  
+
   print::done
 }
 
@@ -142,7 +142,7 @@ function install::bastion() {
     sudo mv -f Bastion Bastion-Old
   fi
 
-  git clone -b stable -q --depth 1 "$BASTION_REPO" || \
+  git clone -b master -q --depth 1 "$BASTION_REPO" || \
     print::error "Unable to download Bastion system files."
 
   print::done
