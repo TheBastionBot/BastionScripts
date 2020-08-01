@@ -124,7 +124,8 @@ function install::package_group() {
 #   3. screen
 #   4. python
 #   5. git
-#   6. build-essential
+#   6. libtool
+#   7. build-essential
 function install::packages() {
   print::bastion "Installing required system packages..."
 
@@ -135,8 +136,9 @@ function install::packages() {
   install::package "screen"
   install::package "python"
   install::package "git"
+  install::package "libtool"
   install::package_group "build-essential"
-
+  
   print::done
 }
 
