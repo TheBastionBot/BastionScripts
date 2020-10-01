@@ -154,6 +154,8 @@ Function Install::NodeJS() {
 
   Install::Package "nodejs-lts"
 
+  refreshenv
+
   npm config set msvs_version 2017
   npm config set python python2.7
 
