@@ -171,6 +171,7 @@ function bastion::dependencies() {
   print::bastion "Installing Bastion dependencies..."
 
   install::package "ffmpeg"
+  install::package "youtube-dl"
 
   sudo npm install --global yarn 1>/dev/null || \
     print::error "Unable to download and install Yarn."
