@@ -5,7 +5,7 @@
 # <https://www.gnu.org/licenses/gpl.txt>.
 #
 # This is just a little script that can be downloaded from the internet to
-# install Bastion on a linux based operating system with the dnf package
+# install Bastion on a linux based operating system with the packman package
 # manager. It installs Bastion and all the required dependencies and packages.
 
 # Exit immediately if a pipeline, which may consist of a single simple command,
@@ -155,10 +155,7 @@ function bastion::dependencies() {
   sudo npm install --global yarn 1>/dev/null || \
     print::error "Unable to download and install Yarn."
 
-  if ! hash ffmpeg &>/dev/null; then
-    sudo dnf -y -q install ffmpeg || sudo yarn global add ffbinaries
-    sudo ffbinaries --output=/usr/local/bin
-  fi
+  install::package "ffmpeg"
 
   cd "$BASTION_DIR"
   yarn install --production --no-lockfile 1>/dev/null || \
