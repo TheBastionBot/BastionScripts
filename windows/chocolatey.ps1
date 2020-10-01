@@ -189,6 +189,7 @@ Function Bastion::Dependencies() {
   Print::Bastion "Installing Bastion dependencies..."
 
   Install::Package "ffmpeg"
+  Install::Package "youtube-dl"
 
   npm install --global yarn
   If (-Not ($?)) {
