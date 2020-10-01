@@ -154,6 +154,8 @@ Function Install::NodeJS() {
 
   Install::Package "nodejs-lts"
 
+  refreshenv
+
   npm config set msvs_version 2017
   npm config set python python2.7
 
@@ -187,6 +189,7 @@ Function Bastion::Dependencies() {
   Print::Bastion "Installing Bastion dependencies..."
 
   Install::Package "ffmpeg"
+  Install::Package "youtube-dl"
 
   npm install --global yarn
   If (-Not ($?)) {
