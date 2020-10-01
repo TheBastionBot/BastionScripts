@@ -178,10 +178,8 @@ function bastion::dependencies() {
   sudo npm install --global yarn 1>/dev/null || \
     print::error "Unable to download and install Yarn."
 
-  if ! hash ffmpeg &>/dev/null; then
-    sudo dnf -y -q install ffmpeg || sudo yarn global add ffbinaries
-    sudo ffbinaries --output=/usr/local/bin
-  fi
+  install::package "ffmpeg"
+  install::package "youtube-dl"
 
   cd "$BASTION_DIR"
   yarn install --production --no-lockfile 1>/dev/null || \
