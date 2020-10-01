@@ -179,6 +179,7 @@ function bastion::dependencies() {
     print::error "Unable to download and install Yarn."
 
   install::package "ffmpeg"
+  install::package "youtube-dl"
 
   cd "$BASTION_DIR"
   yarn install --production --no-lockfile 1>/dev/null || \
