@@ -125,8 +125,8 @@ Function Install::Package($1) {
 #   1. Chocolatey
 #   2. NodeJS
 #   3. Git
-#   4. Visual Studio Build Tools
-#   5. Python 2.x
+#   4. Python
+#   5. Visual Studio Build Tools
 Function Install::Packages() {
   Print::Bastion "Installing required system packages..."
 
@@ -139,10 +139,8 @@ Function Install::Packages() {
   Install::NodeJS
 
   Install::Package "git"
-
-  npm i -g windows-build-tools
-
-  Install::Package "python2"
+  Install::Package "python"
+  Install::Package "visualstudio2017-workload-vctools"
 
   Print::Done
 }
@@ -157,7 +155,6 @@ Function Install::NodeJS() {
   refreshenv
 
   npm config set msvs_version 2017
-  npm config set python python2.7
 
   Print::Done
 }
