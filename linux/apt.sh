@@ -188,7 +188,7 @@ function bastion::dependencies() {
     print::error "Unable to download and install Yarn."
 
   cd "$BASTION_DIR"
-  yarn install --production --no-lockfile 1>/dev/null || \
+  npm install --production --no-package-lock 1>/dev/null || \
     print::error "Unable to download and install node modules."
 
   print::done
