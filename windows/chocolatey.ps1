@@ -194,7 +194,7 @@ Function Bastion::Dependencies() {
   }
 
   cd "$BASTION_DIR"
-  yarn install --production --no-lockfile
+  npm install --production --no-package-lock
   If (-Not ($?)) {
     Print::Error "Unable to download and install node modules."
   }
