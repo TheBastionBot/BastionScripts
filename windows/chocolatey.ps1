@@ -173,7 +173,7 @@ Function Install::Bastion() {
     Move-Item -Path .\Bastion -Destination .\Bastion-Old -Force
   }
 
-  git clone -b master -q --depth 1 "$BASTION_REPO"
+  git clone -b main -q --depth 1 "$BASTION_REPO"
   If (-Not ($?)) {
     Print::Error "Unable to download Bastion system files."
   }
@@ -188,16 +188,13 @@ Function Bastion::Dependencies() {
   Install::Package "ffmpeg"
   Install::Package "youtube-dl"
 
-  npm install --global yarn
-  If (-Not ($?)) {
-    Print::error "Unable to download and install Yarn."
-  }
-
   cd "$BASTION_DIR"
-  npm install --production --no-package-lock
+  npm install --no-package-lock
   If (-Not ($?)) {
     Print::Error "Unable to download and install node modules."
   }
+
+  npm run transpile
 
   Print::Done
 }
