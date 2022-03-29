@@ -142,7 +142,7 @@ function install::bastion() {
     sudo mv -f Bastion Bastion-Old
   fi
 
-  git clone -b master -q --depth 1 "$BASTION_REPO" || \
+  git clone -b main -q --depth 1 "$BASTION_REPO" || \
     print::error "Unable to download Bastion system files."
 
   print::done
@@ -152,15 +152,14 @@ function install::bastion() {
 function bastion::dependencies() {
   print::bastion "Installing Bastion dependencies..."
 
-  sudo npm install --global yarn 1>/dev/null || \
-    print::error "Unable to download and install Yarn."
-
   install::package "ffmpeg"
   install::package "youtube-dl"
 
   cd "$BASTION_DIR"
-  npm install --production --no-package-lock 1>/dev/null || \
+  npm install --no-package-lock 1>/dev/null || \
     print::error "Unable to download and install node modules."
+
+  npm run transpile
 
   print::done
 }
