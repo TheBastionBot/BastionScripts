@@ -146,12 +146,12 @@ function install::nodejs() {
   print::bastion "Installing Node.js..."
 
   if ! hash node &>/dev/null; then
-    (curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -) &>/dev/null || \
+    (curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -) &>/dev/null || \
       (print::error "Unable to add node source." && exit 1)
     install::package "nodejs"
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 16 ]; then
+  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 18 ]; then
     print::error "Please upgrade to Node.js LTS before running the installer again."
   fi
 
