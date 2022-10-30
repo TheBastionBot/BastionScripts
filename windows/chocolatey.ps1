@@ -23,7 +23,6 @@ if ((Administrator-Test) -eq $False) {
 
 # Set local variables for use in script
 $BASTION_DIR="$HOME/Bastion"
-$BASTION_SETTINGS_DIR="$BASTION_DIR/settings"
 $BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
 
 # Function to print message from Bastion
@@ -200,8 +199,7 @@ Function Bastion::Dependencies() {
 Function Bastion::Configure() {
   Print::Bastion "Finalizing..."
 
-  Copy-Item "$BASTION_SETTINGS_DIR\configurations.example.yaml" "$BASTION_SETTINGS_DIR\configurations.yaml"
-  Copy-Item "$BASTION_SETTINGS_DIR\credentials.example.yaml" "$BASTION_SETTINGS_DIR\credentials.yaml"
+  Copy-Item "$BASTION_DIR\settings.example.yaml" "$BASTION_DIR\settings.yaml"
 
   Print::Done
 }
