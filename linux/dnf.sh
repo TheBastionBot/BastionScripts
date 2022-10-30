@@ -177,12 +177,6 @@ function install::bastion() {
 function bastion::dependencies() {
   print::bastion "Installing Bastion dependencies..."
 
-  if ! hash ffmpeg &>/dev/null; then
-    sudo dnf -y -q install ffmpeg || (sudo npm install --global ffbinaries && sudo ffbinaries --output=/usr/local/bin)
-  fi
-
-  install::package "youtube-dl"
-
   cd "$BASTION_DIR"
   npm install --no-package-lock 1>/dev/null || \
     print::error "Unable to download and install node modules."

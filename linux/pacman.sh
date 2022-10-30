@@ -152,9 +152,6 @@ function install::bastion() {
 function bastion::dependencies() {
   print::bastion "Installing Bastion dependencies..."
 
-  install::package "ffmpeg"
-  install::package "youtube-dl"
-
   cd "$BASTION_DIR"
   npm install --no-package-lock 1>/dev/null || \
     print::error "Unable to download and install node modules."

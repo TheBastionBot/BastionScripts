@@ -138,7 +138,7 @@ function install::packages() {
   install::package "git"
   install::package "libtool"
   install::package_group "build-essential"
-  
+
   print::done
 }
 
@@ -180,9 +180,6 @@ function install::bastion() {
 # Function to install all the dependencies of Bastion
 function bastion::dependencies() {
   print::bastion "Installing Bastion dependencies..."
-
-  install::package "ffmpeg"
-  install::package "youtube-dl"
 
   cd "$BASTION_DIR"
   npm install --no-package-lock 1>/dev/null || \
