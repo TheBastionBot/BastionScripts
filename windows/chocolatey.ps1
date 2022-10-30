@@ -1,6 +1,5 @@
-# Copyright 2018 The Bastion Bot Project.
-# Licensed under the GNU General Public License, Version 3.0
-# <https://www.gnu.org/licenses/gpl.txt>.
+# MIT License
+# Copyright (c) 2018-2022 TRACTION
 #
 # This is just a little script that can be downloaded from the internet to
 # install Bastion on Windows operating systems with the chocolatey package
