@@ -185,9 +185,6 @@ Function Install::Bastion() {
 Function Bastion::Dependencies() {
   Print::Bastion "Installing Bastion dependencies..."
 
-  Install::Package "ffmpeg"
-  Install::Package "youtube-dl"
-
   cd "$BASTION_DIR"
   npm install --no-package-lock
   If (-Not ($?)) {
