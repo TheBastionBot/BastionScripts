@@ -23,7 +23,6 @@ CYAN='\033[0;36m'
 
 # Set local variables for use in script
 BASTION_DIR="$HOME/Bastion"
-BASTION_SETTINGS_DIR="$BASTION_DIR/settings"
 BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
 
 # Function to print message from Bastion
@@ -190,8 +189,7 @@ function bastion::dependencies() {
 function bastion::configure() {
   print::bastion "Finalizing..."
 
-  cp "$BASTION_SETTINGS_DIR/configurations.example.yaml" "$BASTION_SETTINGS_DIR/configurations.yaml"
-  cp "$BASTION_SETTINGS_DIR/credentials.example.yaml" "$BASTION_SETTINGS_DIR/credentials.yaml"
+  cp "$BASTION_DIR/settings.example.yaml" "$BASTION_DIR/settings.yaml"
 
   print::done
 }
