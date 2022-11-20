@@ -189,7 +189,7 @@ Function Bastion::Dependencies() {
     Print::Error "Unable to download and install node modules."
   }
 
-  npm run transpile
+  npm run build
 
   Print::Done
 }

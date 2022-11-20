@@ -179,7 +179,7 @@ function bastion::dependencies() {
   npm install --no-package-lock 1>/dev/null || \
     print::error "Unable to download and install node modules."
 
-  npm run transpile
+  npm run build
 
   print::done
 }
