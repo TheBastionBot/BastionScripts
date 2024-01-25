@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # MIT License
-# Copyright (c) 2018-2022 TRACTION
+# Copyright (c) 2018-2024 TRACTION
 #
 # This is just a little script that can be downloaded from the internet to
 # install Bastion on a linux based operating system with the dnf package
@@ -146,7 +146,7 @@ function install::nodejs() {
     install::package "nodejs"
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 18 ]; then
+  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 20 ]; then
     print::error "Please upgrade to Node.js LTS before running the installer again."
   fi
 
