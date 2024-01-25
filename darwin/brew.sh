@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # MIT License
-# Copyright (c) 2018-2022 TRACTION
+# Copyright (c) 2018-2024 TRACTION
 #
 # This is just a little script that can be downloaded from the internet to
 # install Bastion macOS with the Homebrew package manager. It installs Bastion
@@ -135,11 +135,11 @@ function install::nodejs() {
   print::bastion "Installing Node.js..."
 
   if ! hash node &>/dev/null; then
-    brew install "node@18" || \
+    brew install "node@20" || \
       print::error "Unable to download and install Node.js."
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 18 ]; then
+  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 20 ]; then
     print::error "Please upgrade Node.js LTS before running the installer again."
   fi
 

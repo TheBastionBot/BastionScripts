@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # MIT License
-# Copyright (c) 2018-2022 TRACTION
+# Copyright (c) 2018-2024 TRACTION
 #
 # This is just a little script that can be downloaded from the internet to
 # install Bastion on a linux based operating system with the packman package
