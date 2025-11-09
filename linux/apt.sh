@@ -150,7 +150,7 @@ function install::nodejs() {
     install::package "nodejs"
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 22 ]; then
+  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 24 ]; then
     print::error "Please upgrade to Node.js LTS before running the installer again."
   fi
 
