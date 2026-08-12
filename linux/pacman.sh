@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # MIT License
-# Copyright (c) 2018-2024 TRACTION
+# Copyright (c) 2018-2026 TRACTION
 #
 # This is just a little script that can be downloaded from the internet to
-# install Bastion on a linux based operating system with the packman package
+# install Bastion on a linux based operating system with the pacman package
 # manager. It installs Bastion and all the required dependencies and packages.
 
 # Exit immediately if a pipeline, which may consist of a single simple command,
