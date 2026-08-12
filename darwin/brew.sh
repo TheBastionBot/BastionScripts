@@ -154,8 +154,12 @@ function install::bastion() {
   cd "$HOME"
 
   if [ -d "Bastion" ]; then
-    if [ -d "Bastion-Old" ]; then sudo rm -rf Bastion-Old; fi
-    sudo mv -f Bastion Bastion-Old
+    if [ -d "Bastion-Old" ]; then
+      rm -rf Bastion-Old || \
+        print::error "Unable to remove the previous backup at $HOME/Bastion-Old."
+    fi
+    mv -f Bastion Bastion-Old || \
+      print::error "Unable to back up your existing installation at $HOME/Bastion."
   fi
 
   git clone -b main -q --depth 1 "$BASTION_REPO" || \
