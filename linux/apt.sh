@@ -23,6 +23,7 @@ CYAN='\033[0;36m'
 # Set local variables for use in script
 BASTION_DIR="$HOME/Bastion"
 BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
+NODE_MIN="22.19.0"
 
 # Function to print message from Bastion
 # Params:
@@ -150,8 +151,12 @@ function install::nodejs() {
     install::package "nodejs"
   fi
 
-  if [ "$(node --version | cut -d'v' -f 2 | cut -d'.' -f 1)" -ne 24 ]; then
-    print::error "Please upgrade to Node.js LTS before running the installer again."
+  NODE_VERSION="$(node --version 2>/dev/null | tr -d 'v')"
+  if [ -z "$NODE_VERSION" ]; then
+    print::error "Node.js was not installed correctly."
+  fi
+  if [ "$(printf '%s\n%s\n' "$NODE_MIN" "$NODE_VERSION" | sort -V | head -1)" != "$NODE_MIN" ]; then
+    print::error "Bastion needs Node.js $NODE_MIN or later, but found v$NODE_VERSION."
   fi
 
   print::done
