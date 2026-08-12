@@ -174,7 +174,8 @@ function bastion::dependencies() {
   npm install --no-package-lock 1>/dev/null || \
     print::error "Unable to download and install node modules."
 
-  npm run build
+  npm run build || \
+    print::error "Unable to build Bastion system files."
 
   print::done
 }

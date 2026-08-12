@@ -192,6 +192,9 @@ Function Bastion::Dependencies() {
   }
 
   npm run build
+  If (-Not ($?)) {
+    Print::Error "Unable to build Bastion system files."
+  }
 
   Print::Done
 }
