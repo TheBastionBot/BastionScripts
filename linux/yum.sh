@@ -10,8 +10,8 @@
 # Exit immediately if a pipeline, which may consist of a single simple command,
 # a list, or a compound command returns a non-zero status
 set -e
-# Reinitialize the terminal
-reset
+# Reinitialize the terminal, if attached to one
+if [ -t 2 ]; then reset || true; fi
 
 # Set local variables for coloring output
 NC='\033[0m'
