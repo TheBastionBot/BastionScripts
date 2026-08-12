@@ -101,7 +101,7 @@ function check_sudo() {
 #   $@ The list of package names
 function install::package() {
   if ! hash $@ &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm $@ || \
+    sudo pacman -S --needed --noconfirm $@ || \
       print::error "Unable to download and install $@."
   fi
 }
@@ -116,6 +116,10 @@ function install::package() {
 #   6. Development Tools
 function install::packages() {
   print::bastion "Installing required system packages..."
+
+  # Upgrade the whole system, because partial upgrades are not supported
+  print::warning "Arch requires a full system upgrade before installing packages."
+  sudo pacman -Syu --noconfirm || print::error "Unable to upgrade the system."
 
   install::package "curl"
   install::package "wget"
