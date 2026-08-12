@@ -145,8 +145,8 @@ function install::nodejs() {
   print::bastion "Installing Node.js..."
 
   if ! hash node &>/dev/null; then
-    (curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -) &>/dev/null || \
-      (print::error "Unable to add node source." && exit 1)
+    (curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -) 1>/dev/null || \
+      print::error "Unable to add node source."
     install::package "nodejs"
   fi
 
