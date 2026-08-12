@@ -20,6 +20,9 @@ if ((Administrator-Test) -eq $False) {
     Exit 0
 }
 
+# Reset the console colors
+[Console]::ResetColor()
+
 # Set local variables for use in script
 $BASTION_DIR="$HOME/Bastion"
 $BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
@@ -28,12 +31,9 @@ $BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
 # Params:
 #   $1 The message string
 Function Print::Bastion($1) {
-  $NC = $host.ui.RawUI.ForegroundColor
-  $host.ui.RawUI.ForegroundColor = "Cyan"
+  Write-Host "[Bastion]: " -ForegroundColor Cyan -NoNewline
 
-  Write-Host "[Bastion]: " -NoNewline
-
-  $host.ui.RawUI.ForegroundColor = $NC
+  [Console]::ResetColor()
 
   Write-Host "$1"
 }
@@ -42,12 +42,9 @@ Function Print::Bastion($1) {
 # Params:
 #   $1 The warning string
 Function Print::Warning($1) {
-  $NC = $host.ui.RawUI.ForegroundColor
-  $host.ui.RawUI.ForegroundColor = "DarkYellow"
+  Write-Host "[WARNING]: " -ForegroundColor DarkYellow -NoNewline
 
-  Write-Host "[WARNING]: " -NoNewline
-
-  $host.ui.RawUI.ForegroundColor = $NC
+  [Console]::ResetColor()
 
   Write-Host "$1"
 }
@@ -56,24 +53,15 @@ Function Print::Warning($1) {
 # Params:
 #   $1 The error string
 Function Print::Error($1) {
-  $NC = $host.ui.RawUI.ForegroundColor
-  $host.ui.RawUI.ForegroundColor = "Red"
+  Write-Host "[ERROR]: " -ForegroundColor Red -NoNewline
 
-  Write-Host "[ERROR]: " -NoNewline
-
-  $host.ui.RawUI.ForegroundColor = $NC
+  [Console]::ResetColor()
 
   Write-Host "$1"
 
   Write-Host
   Write-Host "Join Bastion HQ and ask for help!"
-
-  $host.ui.RawUI.ForegroundColor = "Cyan"
-
-  Write-Host "https://discord.gg/fzx8fkt"
-
-  $host.ui.RawUI.ForegroundColor = $NC
-
+  Write-Host "https://discord.gg/fzx8fkt" -ForegroundColor Cyan
   Write-Host "And our amazing support staff will help you out."
   Write-Host
 
@@ -99,12 +87,7 @@ Function Print::User($1) {
   Write-Host
   Print::Bastion "$1"
 
-  $NC = $host.ui.RawUI.ForegroundColor
-  $host.ui.RawUI.ForegroundColor = "Green"
-
-  Write-Host "[$env:UserName]: " -NoNewline
-
-  $host.ui.RawUI.ForegroundColor = $NC
+  Write-Host "[$env:UserName]: " -ForegroundColor Green -NoNewline
 }
 
 # Function to install any given package(s) from the package manager
