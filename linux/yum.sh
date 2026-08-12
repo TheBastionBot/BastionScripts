@@ -16,7 +16,6 @@ if [ -t 2 ]; then reset || true; fi
 # Set local variables for coloring output
 NC='\033[0m'
 RED='\033[0;31m'
-GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 CYAN='\033[0;36m'
 
@@ -63,37 +62,6 @@ function print::done() {
 function print::date() {
   echo "[ $(date) ]"
   echo
-}
-
-# Function to print a user prompt before taking input from the user
-# Params:
-#   $@ The hint string for the input
-function prompt::user() {
-  echo
-  print::bastion $@
-  echo -en "${GREEN}[$USER]: ${NC}"
-}
-
-# Function to check if the script was run with superuser permission, warn the
-# user about it and ask them if they like to proceed
-function check_sudo() {
-  if [ "$(id -u)" -eq "0" -a -n "$SUDO_USER" -a "$SUDO_USER" != "root" ]; then
-    print::warning "The installer doesn't require superuser permission."
-    echo
-
-    print::bastion "Are you sure you want to install Bastion with superuser permission?"
-    print::bastion "Proceed if and only if you know what you are doing."
-
-    prompt::user "[Yes/NO]"
-    read -n 1 -r
-    echo -e "\n"
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      INS_DIR=/root
-    else
-      print::bastion  "Run this installer again without superuser permission."
-      exit 1
-    fi
-  fi
 }
 
 # Function to install any given package(s) from the package manager
@@ -213,9 +181,6 @@ function bastion::ready {
 
 function main() {
   print::date
-
-  # Check if user is running the script using `sudo`.
-  check_sudo
 
   # Install required system packages
   install::packages
