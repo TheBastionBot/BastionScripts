@@ -103,7 +103,7 @@ Function Install::Packages() {
 
   Install::Package "git"
   Install::Package "python"
-  Install::Package "visualstudio2017-workload-vctools"
+  Install::Package "visualstudio2022-workload-vctools"
 
   Print::Done
 }
@@ -123,8 +123,6 @@ Function Install::NodeJS() {
   If ([version]$NODE_VERSION -lt [version]$NODE_MIN) {
     Print::Error "Bastion needs Node.js $NODE_MIN or later, but found v$NODE_VERSION."
   }
-
-  npm config set msvs_version 2017
 
   Print::Done
 }
