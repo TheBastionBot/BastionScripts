@@ -90,6 +90,20 @@ function install::packages() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || \
     print::error "Unable to download & install Homebrew."
 
+  # Add Homebrew to the PATH, if it's not already there
+  if ! hash brew &>/dev/null; then
+    for BREW_BIN in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+      if [ -x "$BREW_BIN" ]; then
+        BREW_ENV="$("$BREW_BIN" shellenv)" || \
+          print::error "Unable to set up the Homebrew environment."
+        eval "$BREW_ENV"
+        break
+      fi
+    done
+    hash brew &>/dev/null || \
+      print::error "Homebrew was installed but could not be found on your PATH."
+  fi
+
   brew update -qq || print::error "Unable to update Homebrew."
 
   install::package "screen"
