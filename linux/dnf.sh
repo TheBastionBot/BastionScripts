@@ -91,7 +91,8 @@ function install::package_group() {
 #   3. screen
 #   4. python
 #   5. git
-#   6. Development Tools
+#   6. unzip
+#   7. Development Tools
 function install::packages() {
   print::bastion "Installing required system packages..."
 
@@ -100,6 +101,7 @@ function install::packages() {
   install::package "screen"
   install::package "python"
   install::package "git"
+  install::package "unzip"
   install::package_group "C Development Tools and Libraries"
 
   print::done
@@ -109,11 +111,23 @@ function install::packages() {
 function install::nodejs() {
   print::bastion "Installing Node.js..."
 
-  if ! hash node &>/dev/null; then
-    (curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo -E bash -) 1>/dev/null || \
-      print::error "Unable to add node source."
-    install::package "nodejs"
+  # fnm's installer picks one of these, depending on the machine
+  export PATH="$HOME/.fnm:${XDG_DATA_HOME:-$HOME/.local/share}/fnm:$PATH"
+
+  # Install fnm, if it's not already installed
+  if ! hash fnm &>/dev/null; then
+    curl -fsSL https://fnm.vercel.app/install | bash || \
+      print::warning "fnm was not installed cleanly. If Node.js is missing from new terminals, hook fnm into your shell profile yourself."
+    hash fnm &>/dev/null || print::error "Unable to download and install fnm."
   fi
+
+  FNM_ENV="$(fnm env --shell bash)" || \
+    print::error "Unable to set up the fnm environment."
+  eval "$FNM_ENV"
+
+  fnm install --lts || print::error "Unable to download and install Node.js."
+  fnm use lts-latest || print::error "Unable to switch to the installed Node.js version."
+  fnm default lts-latest || print::error "Unable to set the default Node.js version."
 
   NODE_VERSION="$(node --version 2>/dev/null | tr -d 'v')"
   if [ -z "$NODE_VERSION" ]; then
@@ -176,6 +190,8 @@ function bastion::configure() {
 # Function to print that Bastion was successfully installed
 function bastion::ready {
   print::bastion "Ready to boot up and start running."
+  echo
+  print::bastion "Node.js is managed by fnm, so open a new terminal first."
   echo
   print::bastion "Join Bastion HQ: https://discord.gg/fzx8fkt"
   echo

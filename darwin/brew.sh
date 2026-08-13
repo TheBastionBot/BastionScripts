@@ -103,10 +103,20 @@ function install::packages() {
 function install::nodejs() {
   print::bastion "Installing Node.js..."
 
-  if ! hash node &>/dev/null; then
-    brew install "node@24" || \
-      print::error "Unable to download and install Node.js."
+  # Install fnm, if it's not already installed
+  if ! hash fnm &>/dev/null; then
+    curl -fsSL https://fnm.vercel.app/install | bash || \
+      print::warning "fnm was not installed cleanly. If Node.js is missing from new terminals, hook fnm into your shell profile yourself."
+    hash fnm &>/dev/null || print::error "Unable to download and install fnm."
   fi
+
+  FNM_ENV="$(fnm env --shell bash)" || \
+    print::error "Unable to set up the fnm environment."
+  eval "$FNM_ENV"
+
+  fnm install --lts || print::error "Unable to download and install Node.js."
+  fnm use lts-latest || print::error "Unable to switch to the installed Node.js version."
+  fnm default lts-latest || print::error "Unable to set the default Node.js version."
 
   NODE_VERSION="$(node --version 2>/dev/null | tr -d 'v')"
   if [ -z "$NODE_VERSION" ]; then
@@ -169,6 +179,8 @@ function bastion::configure() {
 # Function to print that Bastion was successfully installed
 function bastion::ready {
   print::bastion "Ready to boot up and start running."
+  echo
+  print::bastion "Node.js is managed by fnm, so open a new terminal first."
   echo
   print::bastion "Join Bastion HQ: https://discord.gg/fzx8fkt"
   echo
