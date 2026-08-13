@@ -72,16 +72,6 @@ Function Print::Date() {
   Write-Host
 }
 
-# Function to print a user prompt before taking input from the user
-# Params:
-#   $1 The hint string for the input
-Function Print::User($1) {
-  Write-Host
-  Print::Bastion "$1"
-
-  Write-Host "[$env:UserName]: " -ForegroundColor Green -NoNewline
-}
-
 # Function to install any given package(s) from the package manager
 # Params:
 #   $1 The list of package names
