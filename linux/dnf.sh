@@ -89,7 +89,7 @@ function install::package_group() {
 #   1. curl
 #   2. wget
 #   3. screen
-#   4. python
+#   4. python3
 #   5. git
 #   6. unzip
 #   7. Development Tools
@@ -99,7 +99,7 @@ function install::packages() {
   install::package "curl"
   install::package "wget"
   install::package "screen"
-  install::package "python"
+  install::package "python3"
   install::package "git"
   install::package "unzip"
   install::package_group "C Development Tools and Libraries"
