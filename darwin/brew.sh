@@ -75,6 +75,22 @@ function install::package() {
   fi
 }
 
+# Function to add Homebrew to the PATH, if it's installed but not on it
+function brew::path() {
+  if hash brew &>/dev/null; then
+    return
+  fi
+
+  for BREW_BIN in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [ -x "$BREW_BIN" ]; then
+      BREW_ENV="$("$BREW_BIN" shellenv)" || \
+        print::error "Unable to set up the Homebrew environment."
+      eval "$BREW_ENV"
+      return
+    fi
+  done
+}
+
 # Function to install system packages required by Bastion
 # List of packages:
 #   1. XCode Command Line Tools
@@ -85,22 +101,23 @@ function install::package() {
 function install::packages() {
   print::bastion "Installing required system packages..."
 
-  sudo xcode-select --install || \
-    print::warning "Unable to download & install XCode Command Line Tools. Maybe it's already installed?"
+  # Install the XCode Command Line Tools, if they're not already installed
+  if ! xcode-select -p &>/dev/null; then
+    xcode-select --install || \
+      print::warning "Unable to download & install the XCode Command Line Tools."
+  fi
 
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || \
-    print::error "Unable to download & install Homebrew."
+  brew::path
 
-  # Add Homebrew to the PATH, if it's not already there
+  # Install Homebrew, if it's not already installed
   if ! hash brew &>/dev/null; then
-    for BREW_BIN in /opt/homebrew/bin/brew /usr/local/bin/brew; do
-      if [ -x "$BREW_BIN" ]; then
-        BREW_ENV="$("$BREW_BIN" shellenv)" || \
-          print::error "Unable to set up the Homebrew environment."
-        eval "$BREW_ENV"
-        break
-      fi
-    done
+    sudo -v || \
+      print::error "Administrator access is required to install Homebrew."
+
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || \
+      print::error "Unable to download & install Homebrew."
+
+    brew::path
     hash brew &>/dev/null || \
       print::error "Homebrew was installed but could not be found on your PATH."
   fi
