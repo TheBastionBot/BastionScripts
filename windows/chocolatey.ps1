@@ -11,15 +11,6 @@ function Administrator-Test {
     (New-Object Security.Principal.WindowsPrincipal $CurrentUser).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
-# Check whether the installer has administrative privileges.
-# If not, run it as administrator.
-if ((Administrator-Test) -eq $False) {
-    # Not running with elevated perms, so let's run it as administrator.
-    PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -NoExit -ExecutionPolicy Unrestricted -File "$MyInvocation.MyCommand.Definition"' -Verb RunAs}";
-    # We need to exit it otherwise the rest of the script will keep on running.
-    Exit 0
-}
-
 # Reset the console colors
 [Console]::ResetColor()
 
@@ -208,6 +199,11 @@ Function Bastion::Ready {
 }
 
 Function Main() {
+  # Check whether the installer has administrative privileges.
+  If (-Not (Administrator-Test)) {
+    Print::Error "Bastion's installer needs administrative privileges. Start PowerShell with 'Run as administrator' and run the installer again."
+  }
+
   Print::Date
 
   # Install required system packages
