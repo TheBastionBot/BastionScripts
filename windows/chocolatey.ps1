@@ -15,9 +15,10 @@ function Administrator-Test {
 [Console]::ResetColor()
 
 # Set local variables for use in script
-$BASTION_DIR="$HOME/Bastion"
+$BASTION_DIR="$HOME\Bastion"
 $BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
 $NODE_MIN="22.19.0"
+$BASTION_BACKUP=""
 
 # Function to print message from Bastion
 # Params:
@@ -139,6 +140,7 @@ Function Install::Bastion() {
       Remove-Item .\Bastion-Old -Force -Recurse
     }
     Move-Item -Path .\Bastion -Destination .\Bastion-Old -Force
+    $global:BASTION_BACKUP = "$ENV:UserProfile\Bastion-Old"
   }
 
   git clone -b main -q --depth 1 "$BASTION_REPO"
@@ -174,6 +176,9 @@ Function Bastion::Configure() {
   Print::Bastion "Finalizing..."
 
   Copy-Item "$BASTION_DIR\settings.example.yaml" "$BASTION_DIR\settings.yaml"
+  If (-Not ($?)) {
+    Print::Warning "Unable to create the settings file. Copy settings.example.yaml to settings.yaml in $BASTION_DIR yourself."
+  }
 
   Print::Done
 }
@@ -182,6 +187,12 @@ Function Bastion::Configure() {
 Function Bastion::Ready {
   Print::Bastion "Ready to boot up and start running."
   Write-Host
+  Print::Bastion "Configure Bastion by editing $BASTION_DIR\settings.yaml"
+  Write-Host
+  If ($BASTION_BACKUP) {
+    Print::Bastion "Your previous installation was moved to $BASTION_BACKUP"
+    Write-Host
+  }
   Print::Bastion "Join Bastion HQ: https://discord.gg/fzx8fkt"
   Write-Host
 }

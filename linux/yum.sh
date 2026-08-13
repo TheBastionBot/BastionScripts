@@ -23,6 +23,7 @@ CYAN='\033[0;36m'
 BASTION_DIR="$HOME/Bastion"
 BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
 NODE_MIN="22.19.0"
+BASTION_BACKUP=""
 
 # Function to print message from Bastion
 # Params:
@@ -148,10 +149,11 @@ function install::bastion() {
   if [ -d "Bastion" ]; then
     if [ -d "Bastion-Old" ]; then
       rm -rf Bastion-Old || \
-        print::error "Unable to remove the previous backup at $HOME/Bastion-Old."
+        print::error "Unable to remove the previous backup at $HOME/Bastion-Old"
     fi
     mv -f Bastion Bastion-Old || \
-      print::error "Unable to back up your existing installation at $HOME/Bastion."
+      print::error "Unable to back up your existing installation at $HOME/Bastion"
+    BASTION_BACKUP="$HOME/Bastion-Old"
   fi
 
   git clone -b main -q --depth 1 "$BASTION_REPO" || \
@@ -180,7 +182,8 @@ function bastion::dependencies() {
 function bastion::configure() {
   print::bastion "Finalizing..."
 
-  cp "$BASTION_DIR/settings.example.yaml" "$BASTION_DIR/settings.yaml"
+  cp "$BASTION_DIR/settings.example.yaml" "$BASTION_DIR/settings.yaml" || \
+    print::warning "Unable to create the settings file. Copy settings.example.yaml to settings.yaml in $BASTION_DIR yourself."
 
   print::done
 }
@@ -189,8 +192,12 @@ function bastion::configure() {
 function bastion::ready {
   print::bastion "Ready to boot up and start running."
   echo
-  print::bastion "Node.js is managed by fnm, so open a new terminal first."
+  print::bastion "Configure Bastion by editing $BASTION_DIR/settings.yaml"
   echo
+  if [ -n "$BASTION_BACKUP" ]; then
+    print::bastion "Your previous installation was moved to $BASTION_BACKUP"
+    echo
+  fi
   print::bastion "Join Bastion HQ: https://discord.gg/fzx8fkt"
   echo
 }
