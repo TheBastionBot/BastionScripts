@@ -156,7 +156,7 @@ Function Bastion::Dependencies() {
   Install::Package "ffmpeg"
 
   cd "$BASTION_DIR"
-  npm install --no-package-lock
+  npm ci
   If (-Not ($?)) {
     Print::Error "Unable to download and install node modules."
   }

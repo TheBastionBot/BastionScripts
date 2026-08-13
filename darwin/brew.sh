@@ -172,7 +172,7 @@ function bastion::dependencies() {
   install::package "ffmpeg"
 
   cd "$BASTION_DIR"
-  npm install --no-package-lock 1>/dev/null || \
+  npm ci 1>/dev/null || \
     print::error "Unable to download and install node modules."
 
   npm run build || \
