@@ -26,6 +26,7 @@ if ((Administrator-Test) -eq $False) {
 # Set local variables for use in script
 $BASTION_DIR="$HOME/Bastion"
 $BASTION_REPO="https://github.com/TheBastionBot/Bastion.git"
+$NODE_MIN="22.19.0"
 
 # Function to print message from Bastion
 # Params:
@@ -126,14 +127,21 @@ Function Install::Packages() {
   Print::Done
 }
 
-# Function to install Node.js
-# TODO: Check if the right version is installed
+# Function to install Node.js or check if the right version is installed
 Function Install::NodeJS() {
   Print::Bastion "Installing Node.js..."
 
   Install::Package "nodejs-lts"
 
   refreshenv
+
+  $NODE_VERSION = (node --version) -replace '^v', ''
+  If (-Not ($NODE_VERSION)) {
+    Print::Error "Node.js was not installed correctly."
+  }
+  If ([version]$NODE_VERSION -lt [version]$NODE_MIN) {
+    Print::Error "Bastion needs Node.js $NODE_MIN or later, but found v$NODE_VERSION."
+  }
 
   npm config set msvs_version 2017
 
